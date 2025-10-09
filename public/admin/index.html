@@ -5,10 +5,26 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="robots" content="noindex" />
     <title>Content Manager</title>
+
+    <!-- Netlify Identity widget (login & auth) -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
+
   <body>
-    <!-- Netlify CMS (auto-initializes, reads /admin/config.yml by default) -->
+    <!-- Netlify CMS app -->
     <script src="https://unpkg.com/netlify-cms@^2/dist/netlify-cms.js"></script>
+
+    <script>
+      // Optional helper for smoother login
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", (user) => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.reload();
+            });
+          }
+        });
+      }
+    </script>
   </body>
 </html>
