@@ -1,0 +1,22 @@
+/* TEMP TEST — you can delete later */
+body { background:#0a0a0a; color:#e5e5e5; }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Floating/drifting animation for background logos */
+@keyframes floatDrift {
+  0%   { transform: translate3d(0,   0, 0) rotate(0deg); }
+  25%  { transform: translate3d(8px,-10px, 0) rotate(1deg); }
+  50%  { transform: translate3d(0, -16px, 0) rotate(0deg); }
+  75%  { transform: translate3d(-8px,-10px, 0) rotate(-1deg); }
+  100% { transform: translate3d(0,   0, 0) rotate(0deg); }
+}
+
+@layer utilities {
+  .animate-float-drift {
+    animation-name: floatDrift;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+}
