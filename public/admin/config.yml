@@ -2,8 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "static/uploads"
-public_folder: "/uploads"
+media_folder: "public/uploads"   # where images are stored in repo
+public_folder: "/uploads"        # how your site will reference them
 
 collections:
   - name: "blog"
@@ -11,8 +11,11 @@ collections:
     folder: "posts"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: "frontmatter"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { name: "image", label: "Cover Image", widget: "image" }
+      - { label: "Tags", name: "tags", widget: "list", default: [] }
+      - { label: "Excerpt", name: "excerpt", widget: "text", required: false }
+      - { label: "Cover image", name: "image", widget: "image", required: false }
       - { label: "Body", name: "body", widget: "markdown" }

@@ -159,6 +159,24 @@ export default function App() {
 
 
 
+
+{/* Blogs */}
+      <a
+        href="#blog"
+        className="inline-flex items-center gap-2 px-3 py-1 rounded-lg border border-zinc-800 text-zinc-300 hover:border-sky-500 hover:text-white transition text-sm"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M19 21H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4l2-3h2l2 3h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2z" />
+        </svg>
+        Blogs
+      </a>
+
+
+
+
+
+
+
       {/* Education */}
       <a
         href="#education"
@@ -173,20 +191,6 @@ export default function App() {
 
 
 
-
-
-
-
-      {/* Blogs */}
-      <a
-        href="#blog"
-        className="inline-flex items-center gap-2 px-3 py-1 rounded-lg border border-zinc-800 text-zinc-300 hover:border-sky-500 hover:text-white transition text-sm"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M19 21H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4l2-3h2l2 3h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2z" />
-        </svg>
-        Blogs
-      </a>
 
 
 
@@ -623,6 +627,257 @@ export default function App() {
 
 
 
+
+{/* ------------------------------ PROJECTS -------------------------- */}
+<Section id="projects" title="Projects & Experiemnts" subtitle="A showcase of hands-on data, AI, and machine learning projects — from exploration to execution.">
+  {(() => {
+    const PROJECTS = [  
+      {
+        title: "Shoppers behaviour prediction and intellince system",
+        desc:
+          "End-to-end customer intelligence project on the Instacart dataset — built reorder prediction models (XGBoost, LightGBM, CatBoost) with LightGBM selected as final (F1 ≈ 0.45, ROC-AUC ≈ 0.84), engineered customer segmentation (KMeans, DBSCAN), and developed market basket analysis and recommendation systems to drive personalization, retention, and growth.",
+        tech: ["XGBoost","LightGBM","CatBoost","SHAP","KMeans","PCA","DBSCAN","Apriori","Word2Vec"],
+        readUrl: "https://github.com/SayaliSawant0101/Instacart-Customer-Intelligence/blob/main/README.md",
+        img: "2.png",
+        alt: "Instacart project thumbnail",
+      },
+      {
+        title: "Patient Segmentation and Program Prediction",
+        desc:
+          "Comprehensive analysis of NYS Patient Characteristics Survey data — built supervised models to predict mental health program utilization and applied unsupervised clustering (PCA + KMeans/DBSCAN) to segment patients, uncovering patterns that guide personalized care, targeted interventions, and efficient resource planning.",
+        tech: ["EDA","Feature Engineering","Decision Tree","Random Forest","KMeans","DBSCAN"],
+        readUrl: "#",
+        img: "4.png",
+        alt: "NPS churn/upsell project thumbnail",
+      },
+      {
+        title: "IMDB Movie Review Sentiment Analyis",
+        desc:
+          "NLP pipeline on the IMDB dataset — built sentiment classification models (Logistic Regression, LSTM/GRU, DistilBERT) with DistilBERT selected as final (Accuracy ≈ 0.91, F1 ≈ 0.91), engineered preprocessing and explainability (TF-IDF features, token contribution analysis), and developed an interactive Gradio demo with Hugging Face deployment for real-time review predictions..",
+        tech: ["Logistic Regression","TF-IDF features", "LSTM / GRU","Transformers (DistilBERT)","Word Embeddings","PyTorch","TensorFlow", "Hugging Face Spaces", "Gradio"],
+        readUrl: "https://github.com/SayaliSawant0101/imdb-sentiment-analysis/blob/main/README.md",
+        codeUrl: "https://huggingface.co/spaces/sayalis2024/imdb-sentiment-sayali",
+        img: "6.png",
+        alt: "School segmentation project thumbnail",
+      },
+    ];
+
+    const Tech = ({ children }) => (
+      <span className="px-2.5 py-1 rounded-full border border-emerald-400/30 bg-emerald-400/10 text-xs text-emerald-300">
+        {children}
+      </span>
+    );
+
+    // Fallback image (optional)
+    const FALLBACK = "/projects/placeholder.jpg"; // add a placeholder here if you want
+
+    return (
+      <motion.div
+        className="grid md:grid-cols-3 gap-6 items-stretch"
+        variants={STAGGER}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        {PROJECTS.map((p) => (
+          <motion.div key={p.title} variants={ITEM}>
+            <div
+              className="group h-full rounded-2xl border border-zinc-800 bg-zinc-900/60 backdrop-blur-sm p-6
+                         transition-all duration-300 hover:border-sky-500/60 hover:shadow-[0_0_60px_-20px_rgba(56,189,248,0.65)]"
+            >
+              {/* Title */}
+              <center><h3 className="text-lg font-semibold">{p.title}</h3></center>
+
+              {/* Image (unique per project) */}
+              <div className="mt-4 overflow-hidden rounded-xl">
+                <img
+                  src={p.img || FALLBACK}
+                  alt={p.alt || p.title}
+                  className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                  onError={(e) => { if (FALLBACK) e.currentTarget.src = FALLBACK; }}
+                />
+              </div>
+
+              {/* Description */}
+              <p className="mt-4 text-sm text-gray-300">{p.desc}</p>
+
+              {/* Tech chips */}
+              <div className="mt-4 flex flex-wrap gap-2">
+                {p.tech.map((t) => (
+                  <Tech key={t}>{t}</Tech>
+                ))}
+              </div>
+
+              {/* Actions */}
+              <div className="mt-6 flex gap-2">
+                {p.readUrl && (
+                  <Button size="sm" variant="secondary" asChild>
+                    <a href={p.readUrl} target="_blank" rel="noreferrer">Read on GitHub</a>
+                  </Button>
+                )}
+                {p.codeUrl && (
+                  <Button size="sm" variant="secondary" asChild>
+                    <a href={p.codeUrl} target="_blank" rel="noreferrer">Live Demo</a>
+                  </Button>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
+    );
+  })()}
+</Section>
+
+
+
+
+
+
+
+
+
+{/* ------------------------------ BLOGS ---------------------------- */}
+<Section
+  id="blog"
+  title="Thoughts, Knowledge, and a Perspective"
+  subtitle="A mix of what I’ve learned, what I’m curious about, and what I see changing in the world of data and AI."
+>
+  {(() => {
+    // Load markdown posts generated by Netlify CMS
+    const allPosts = React.useMemo(() => {
+      try {
+        return getAllPosts(); // [{ slug, title, date, excerpt, image, ... }]
+      } catch (e) {
+        console.error("[Home] getAllPosts failed:", e);
+        return [];
+      }
+    }, []);
+
+    // helpers
+    const toDate = (d) => {
+      if (!d) return null;
+      const t = new Date(d);
+      return isNaN(+t) ? null : t;
+    };
+    const labelDate = (dt) =>
+      dt ? dt.toLocaleDateString(undefined, { month: "short", day: "numeric" }) : "—";
+    const readTime = (txt) => {
+      const words = (txt || "").trim().split(/\s+/).length || 200;
+      return Math.max(1, Math.round(words / 200)) + " min read";
+    };
+
+    // normalize → sort newest first → keep only 3 for home
+    const posts = React.useMemo(() => {
+      const list = [...allPosts].map((p) => {
+        let dt = toDate(p.date);
+        // Fallback: try to infer from slug YYYY-MM-DD
+        if (!dt) {
+          const m = (p.slug || "").match(/\d{4}-\d{2}-\d{2}/);
+          if (m) dt = toDate(m[0]);
+        }
+        return {
+          ...p,
+          __date: dt,
+          __dateLabel: labelDate(dt),
+          __read: readTime(p.excerpt),
+        };
+      });
+      list.sort((a, b) => ((b.__date ? +b.__date : 0) - (a.__date ? +a.__date : 0)));
+      return list.slice(0, 3);
+    }, [allPosts]);
+
+    const Card = ({ post }) => (
+      <Link
+  to={`/blog/${post.slug}`}
+  className="group block h-full rounded-2xl border border-zinc-800 bg-zinc-900/60 backdrop-blur-sm transition-all duration-500 overflow-hidden hover:border-sky-400/60 hover:shadow-[0_0_40px_-10px_rgba(56,189,248,0.6)] hover:scale-[1.02]"
+>
+        {/* Top image (if provided) */}
+        {post.image ? (
+          <div className="aspect-[16/9] w-full overflow-hidden">
+            <img
+              src={post.image}
+              alt={post.title}
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              loading="lazy"
+            />
+          </div>
+        ) : (
+          <div className="aspect-[16/9] w-full bg-gradient-to-br from-zinc-900 to-zinc-800" />
+        )}
+
+        {/* Body */}
+        <div className="p-6">
+          <h3 className="text-xl font-semibold leading-snug text-zinc-100 group-hover:text-white transition-colors">
+            {post.title || post.slug}
+          </h3>
+
+          <div className="mt-3 flex items-center justify-between text-sm text-emerald-300 group-hover:text-emerald-700 transition-colors">
+            <span>{post.__dateLabel}</span>
+            <span>{post.__read}</span>
+          </div>
+        </div>
+      </Link>
+    );
+
+    return posts.length ? (
+      <>
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch"
+          variants={STAGGER}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          {posts.map((p) => (
+            <motion.div key={p.slug} variants={ITEM} className="h-full">
+              <Card post={p} />
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <motion.div
+          className="flex justify-center mt-8"
+          variants={STAGGER}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <motion.div variants={ITEM}>
+            <Button variant="outline" asChild>
+              <Link to="/blog">View all posts</Link>
+            </Button>
+          </motion.div>
+        </motion.div>
+      </>
+    ) : (
+      <div className="text-center text-zinc-400">
+        No posts yet. Add markdown files under <code>/posts</code> and they’ll appear here.
+        <div className="mt-6">
+          <Button variant="outline" asChild>
+            <Link to="/blog">Go to blog</Link>
+          </Button>
+        </div>
+      </div>
+    );
+  })()}
+</Section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         {/* ------------------------------ EDUCATION ------------------------ */}
 
 <Section
@@ -805,242 +1060,6 @@ export default function App() {
     );
   })()}
 </Section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-{/* ------------------------------ PROJECTS -------------------------- */}
-<Section id="projects" title="Projects" subtitle="Selected work with code and results">
-  {(() => {
-    const PROJECTS = [
-      {
-        title: "Shoppers behaviour prediction and intellince system",
-        desc:
-          "End-to-end customer intelligence project on the Instacart dataset — built reorder prediction models (XGBoost, LightGBM, CatBoost) with LightGBM selected as final (F1 ≈ 0.45, ROC-AUC ≈ 0.84), engineered customer segmentation (KMeans, DBSCAN), and developed market basket analysis and recommendation systems to drive personalization, retention, and growth.",
-        tech: ["XGBoost","LightGBM","CatBoost","SHAP","KMeans","PCA","DBSCAN","Apriori","Word2Vec"],
-        readUrl: "https://github.com/SayaliSawant0101/Instacart-Customer-Intelligence/blob/main/README.md",
-        img: "2.png",
-        alt: "Instacart project thumbnail",
-      },
-      {
-        title: "Patient Segmentation and Program Prediction",
-        desc:
-          "Comprehensive analysis of NYS Patient Characteristics Survey data — built supervised models to predict mental health program utilization and applied unsupervised clustering (PCA + KMeans/DBSCAN) to segment patients, uncovering patterns that guide personalized care, targeted interventions, and efficient resource planning.",
-        tech: ["EDA","Feature Engineering","Decision Tree","Random Forest","KMeans","DBSCAN"],
-        readUrl: "#",
-        img: "4.png",
-        alt: "NPS churn/upsell project thumbnail",
-      },
-      {
-        title: "IMDB Movie Review Sentiment Analyis",
-        desc:
-          "NLP pipeline on the IMDB dataset — built sentiment classification models (Logistic Regression, LSTM/GRU, DistilBERT) with DistilBERT selected as final (Accuracy ≈ 0.91, F1 ≈ 0.91), engineered preprocessing and explainability (TF-IDF features, token contribution analysis), and developed an interactive Gradio demo with Hugging Face deployment for real-time review predictions..",
-        tech: ["Logistic Regression","TF-IDF features", "LSTM / GRU","Transformers (DistilBERT)","Word Embeddings","PyTorch","TensorFlow", "Hugging Face Spaces", "Gradio"],
-        readUrl: "https://github.com/SayaliSawant0101/imdb-sentiment-analysis/blob/main/README.md",
-        codeUrl: "https://huggingface.co/spaces/sayalis2024/imdb-sentiment-sayali",
-        img: "6.png",
-        alt: "School segmentation project thumbnail",
-      },
-    ];
-
-    const Tech = ({ children }) => (
-      <span className="px-2.5 py-1 rounded-full border border-emerald-400/30 bg-emerald-400/10 text-xs text-emerald-300">
-        {children}
-      </span>
-    );
-
-    // Fallback image (optional)
-    const FALLBACK = "/projects/placeholder.jpg"; // add a placeholder here if you want
-
-    return (
-      <motion.div
-        className="grid md:grid-cols-3 gap-6 items-stretch"
-        variants={STAGGER}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        {PROJECTS.map((p) => (
-          <motion.div key={p.title} variants={ITEM}>
-            <div
-              className="group h-full rounded-2xl border border-zinc-800 bg-zinc-900/60 backdrop-blur-sm p-6
-                         transition-all duration-300 hover:border-sky-500/60 hover:shadow-[0_0_60px_-20px_rgba(56,189,248,0.65)]"
-            >
-              {/* Title */}
-              <center><h3 className="text-lg font-semibold">{p.title}</h3></center>
-
-              {/* Image (unique per project) */}
-              <div className="mt-4 overflow-hidden rounded-xl">
-                <img
-                  src={p.img || FALLBACK}
-                  alt={p.alt || p.title}
-                  className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                  onError={(e) => { if (FALLBACK) e.currentTarget.src = FALLBACK; }}
-                />
-              </div>
-
-              {/* Description */}
-              <p className="mt-4 text-sm text-gray-300">{p.desc}</p>
-
-              {/* Tech chips */}
-              <div className="mt-4 flex flex-wrap gap-2">
-                {p.tech.map((t) => (
-                  <Tech key={t}>{t}</Tech>
-                ))}
-              </div>
-
-              {/* Actions */}
-              <div className="mt-6 flex gap-2">
-                {p.readUrl && (
-                  <Button size="sm" variant="secondary" asChild>
-                    <a href={p.readUrl} target="_blank" rel="noreferrer">Read on GitHub</a>
-                  </Button>
-                )}
-                {p.codeUrl && (
-                  <Button size="sm" variant="secondary" asChild>
-                    <a href={p.codeUrl} target="_blank" rel="noreferrer">Live Demo</a>
-                  </Button>
-                )}
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
-    );
-  })()}
-</Section>
-
-
-
-
-
-
-
-
-
-{/* ------------------------------ BLOGS ---------------------------- */}
-<Section
-  id="blog"
-  title="Insights, tutorials, and thoughts"
-  subtitle="on software development and technology."
->
-  {(() => {
-    // Load markdown posts generated by Netlify CMS
-    const allPosts = React.useMemo(() => {
-      try {
-        return getAllPosts(); // [{ slug, title, date, content, excerpt, tags }]
-      } catch (e) {
-        console.error("[Home] getAllPosts failed:", e);
-        return [];
-      }
-    }, []);
-
-    // helpers
-    const safeDate = (d) => {
-      if (!d) return null;
-      const dt = new Date(d);
-      return isNaN(+dt) ? null : dt;
-    };
-    const dateLabel = (dt) =>
-      dt ? dt.toLocaleDateString(undefined, { month: "short", day: "numeric" }) : "—";
-    const readTime = (txt) => {
-      const words = (txt || "").trim().split(/\s+/).length || 200;
-      return Math.max(1, Math.round(words / 200)) + " min read";
-    };
-
-    // normalize + sort newest first, limit to 6
-    const posts = React.useMemo(() => {
-      const copy = [...allPosts].map((p) => {
-        let dt = safeDate(p.date);
-        if (!dt) {
-          const m = (p.slug || "").match(/\d{4}-\d{2}-\d{2}/);
-          if (m) dt = safeDate(m[0]);
-        }
-        return {
-          ...p,
-          __date: dt,
-          __dateLabel: dateLabel(dt),
-          __read: readTime(p.content),
-        };
-      });
-      copy.sort((a, b) => ((b.__date ? +b.__date : 0) - (a.__date ? +a.__date : 0)));
-      return copy.slice(0, 6);
-    }, [allPosts]);
-
-    const BlogCard = ({ post }) => (
-      <Link to={`/blog/${post.slug}`} className="block h-full">
-        <div className="relative h-full rounded-2xl bg-gradient-to-br from-sky-400/20 to-emerald-400/20 p-[1px] transition-transform duration-300 hover:-translate-y-1">
-          <div className="h-55 rounded-2xl bg-zinc-950/70 backdrop-blur border border-zinc-800/80
-                          hover:border-sky-500/60 hover:shadow-[0_0_60px_-20px_rgba(56,189,248,0.65)]
-                          transition-all duration-300 flex flex-col p-6 md:p-7">
-            <h3 className="font-semibold text-lg leading-snug text-white">
-              {post.title || post.slug}
-            </h3>
-            <div className="flex-grow" />
-            <div className="mt-6 flex items-center justify-between text-sm text-emerald-300/90">
-              <span>{post.__dateLabel}</span>
-              <span>{post.__read}</span>
-            </div>
-          </div>
-        </div>
-      </Link>
-    );
-
-    return posts.length ? (
-      <>
-        <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch"
-          variants={STAGGER}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          {posts.map((p) => (
-            <motion.div key={p.slug} variants={ITEM} className="h-full">
-              <BlogCard post={p} />
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <motion.div
-          className="flex justify-center mt-8"
-          variants={STAGGER}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <motion.div variants={ITEM}>
-            <Button variant="outline" asChild>
-              <Link to="/blog">View all posts</Link>
-            </Button>
-          </motion.div>
-        </motion.div>
-      </>
-    ) : (
-      <div className="text-center text-zinc-400">
-        No posts yet. Add markdown files under <code>/posts</code> and they’ll appear here.
-        <div className="mt-6">
-          <Button variant="outline" asChild>
-            <Link to="/blog">Go to blog</Link>
-          </Button>
-        </div>
-      </div>
-    );
-  })()}
-</Section>
-
-
-
-
 
 
 

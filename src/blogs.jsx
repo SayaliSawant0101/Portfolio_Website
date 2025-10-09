@@ -3,19 +3,41 @@ import { Search, Clock, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getAllPosts } from "./lib/loadPosts";
 
-// Small card for "More Articles"
+// Nice date formatter
+function formatDate(d) {
+  if (!d) return "—";
+  const t = new Date(d);
+  return isNaN(+t)
+    ? String(d)
+    : t.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+}
+
+// Small card with optional thumbnail
 const SmallCard = ({ post }) => (
   <Link
     to={`/blog/${post.slug}`}
     className="group block rounded-2xl border border-zinc-800 bg-zinc-900/70 hover:bg-white hover:border-zinc-200 transition-all duration-300 overflow-hidden"
   >
-    {/* Markdown posts don't ship images by default; keep a simple header area */}
+    {/* Top image if available */}
+    {post.image ? (
+      <div className="aspect-[16/9] w-full overflow-hidden">
+        <img
+          src={post.image}
+          alt={post.title}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+        />
+      </div>
+    ) : (
+      // graceful placeholder if no image in front matter
+      <div className="aspect-[16/9] w-full bg-gradient-to-br from-zinc-900 to-zinc-800" />
+    )}
+
     <div className="p-5">
       <h3 className="text-lg font-semibold leading-snug text-zinc-100 group-hover:text-black transition-colors">
         {post.title}
       </h3>
       <div className="mt-3 flex items-center justify-between text-sm text-zinc-400 group-hover:text-zinc-600 transition-colors">
-        <span>{post.date || "—"}</span>
+        <span>{formatDate(post.date)}</span>
         <span className="inline-flex items-center gap-1">
           <Clock className="w-4 h-4" />
           {Math.max(1, Math.round((post.excerpt?.length || 200) / 900))} min read
@@ -28,10 +50,10 @@ const SmallCard = ({ post }) => (
 export default function Blog() {
   const [q, setQ] = React.useState("");
 
-  // Load all posts from /posts/*.md (sorted newest-first by the loader)
+  // Pull markdown posts (sorted newest-first by the loader)
   const posts = React.useMemo(() => getAllPosts(), []);
 
-  // Simple client-side search
+  // Search filter
   const filtered = React.useMemo(() => {
     if (!q.trim()) return posts;
     const t = q.toLowerCase();
@@ -67,7 +89,7 @@ export default function Blog() {
             A curated collection of thoughts, code, and explorations from my digital journey.
           </p>
 
-          {/* Search */}
+        {/* Search */}
           <div className="mt-6 mx-auto max-w-xl relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400" />
             <input
@@ -93,7 +115,7 @@ export default function Blog() {
               {/* Text */}
               <div className="p-6 md:p-8">
                 <div className="flex items-center gap-3 text-sm text-zinc-400 group-hover:text-zinc-600 transition-colors">
-                  <span>{latest.date || "—"}</span>
+                  <span>{formatDate(latest.date)}</span>
                   <span className="inline-flex items-center gap-1">
                     <Clock className="w-4 h-4" />
                     {Math.max(1, Math.round((latest.excerpt?.length || 200) / 900))} min read
@@ -112,13 +134,21 @@ export default function Blog() {
                 </div>
               </div>
 
-              {/* (Optional) Image panel placeholder to keep layout nice */}
-              <div className="hidden md:block bg-gradient-to-t from-zinc-950/10 to-transparent" />
+              {/* Image for latest (if provided) */}
+              {latest.image ? (
+                <img
+                  src={latest.image}
+                  alt={latest.title}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              ) : (
+                <div className="hidden md:block bg-gradient-to-t from-zinc-950/10 to-transparent" />
+              )}
             </Link>
           )}
         </section>
 
-        {/* More Articles */}
+        {/* More Articles with thumbnails */}
         <section>
           <p className="uppercase tracking-wider text-xs text-zinc-400 mb-4">More Articles</p>
           <div className="grid md:grid-cols-2 gap-6">

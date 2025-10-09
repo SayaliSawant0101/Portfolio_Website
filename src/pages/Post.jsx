@@ -35,11 +35,30 @@ export default function Post() {
 
   if (!post) {
     return (
-      <div style={{ minHeight: "100vh", background: "#0b0b0b", color: "#eee", padding: 24, fontFamily: "system-ui" }}>
+      <div
+        style={{
+          minHeight: "100vh",
+          background: "#0b0b0b",
+          color: "#eee",
+          padding: 24,
+          fontFamily: "system-ui",
+        }}
+      >
         <div style={{ maxWidth: 980, margin: "0 auto" }}>
-          <p><Link to="/blog" style={{ color: "#9cf", textDecoration: "none" }}>← Back to all articles</Link></p>
-          <h1 style={{ marginTop: 16, fontSize: 28, fontWeight: 800 }}>Post not found</h1>
-          <p style={{ marginTop: 8, color: "#bbb" }}>No markdown file at <code>/posts/{slug}.md</code>.</p>
+          <p>
+            <Link
+              to="/blog"
+              style={{ color: "#9cf", textDecoration: "none" }}
+            >
+              ← Back to all articles
+            </Link>
+          </p>
+          <h1 style={{ marginTop: 16, fontSize: 28, fontWeight: 800 }}>
+            Post not found
+          </h1>
+          <p style={{ marginTop: 8, color: "#bbb" }}>
+            No markdown file at <code>/posts/{slug}.md</code>.
+          </p>
         </div>
       </div>
     );
@@ -47,7 +66,10 @@ export default function Post() {
 
   // Parse markdown
   let html = post.content;
-  try { html = typeof marked === "function" ? marked(post.content) : post.content; } catch {}
+  try {
+    html =
+      typeof marked === "function" ? marked(post.content) : post.content;
+  } catch {}
 
   // Styles (scoped)
   const styles = `
@@ -56,7 +78,7 @@ export default function Post() {
   .back { color:#a78bfa; text-decoration:none; }
   .hero {
     position: relative;
-    height: clamp(220px, 34vw, 340px);
+    height: clamp(240px, 36vw, 400px);
     border-radius: 22px;
     overflow: hidden;
     background: #0f0f13;
@@ -65,13 +87,17 @@ export default function Post() {
     position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
     filter: saturate(1.05) brightness(0.9);
     transform: scale(1.02);
+    transition: transform 4s ease;
+  }
+  .hero-img:hover {
+    transform: scale(1.05);
   }
   .hero-overlay {
     position:absolute; inset:0;
     background:
       radial-gradient(1000px 420px at 20% -10%, rgba(99,102,241,0.35), transparent 60%),
       radial-gradient(900px 360px at 110% 0%, rgba(34,197,94,0.33), transparent 50%),
-      linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.55));
+      linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.6));
   }
   .hero-title {
     position:absolute; inset:0; display:grid; place-items:center; text-align:center;
@@ -118,16 +144,22 @@ export default function Post() {
          padding:6px 10px; border-radius:999px; }
   `;
 
+  // ✅ Use CMS image or fallback
   const heroSrc =
-    post.image ||
-    "/hero-fallback.jpg"; // add a nice fallback in /public if you like
+    post.image && post.image.trim() !== ""
+      ? post.image
+      : "/uploads/default-hero.jpg"; // fallback image (put this in /public/uploads)
 
   return (
     <div className="page">
       <style>{styles}</style>
 
       <div className="wrap">
-        <p><Link to="/blog" className="back">← Back to all articles</Link></p>
+        <p>
+          <Link to="/blog" className="back">
+            ← Back to all articles
+          </Link>
+        </p>
 
         {/* HERO */}
         <div className="hero" aria-label="cover image">
@@ -155,13 +187,17 @@ export default function Post() {
         {Array.isArray(post.tags) && post.tags.length > 0 && (
           <div className="tags">
             {post.tags.map((t) => (
-              <span key={t} className="tag">#{t}</span>
+              <span key={t} className="tag">
+                #{t}
+              </span>
             ))}
           </div>
         )}
 
         <div style={{ marginTop: 28 }}>
-          <Link to="/blog" className="back">← Back to all articles</Link>
+          <Link to="/blog" className="back">
+            ← Back to all articles
+          </Link>
         </div>
       </div>
     </div>
