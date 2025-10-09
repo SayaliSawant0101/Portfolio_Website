@@ -4,20 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Admin</title>
-    <!-- Netlify Identity widget (login) -->
+    <title>Content Manager</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <!-- Netlify CMS bundle -->
-    <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
   </head>
   <body>
+    <!-- Netlify CMS App -->
+    <script src="https://unpkg.com/netlify-cms-app@^2.15.0/dist/netlify-cms-app.js"></script>
     <script>
-      // (Optional) make login smoother: after login, reload the page so CMS boots with auth
+      NetlifyCmsApp.init({
+        configPath: 'config.yml'
+      });
+
+      // optional: handle login reloads cleanly
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on('init', user => {
           if (!user) {
             window.netlifyIdentity.on('login', () => {
-              window.location.reload();
+              document.location.reload();
             });
           }
         });
