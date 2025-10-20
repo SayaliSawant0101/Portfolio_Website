@@ -67,10 +67,7 @@ function Section({ id, title, subtitle, children }) {
             </span>
           </motion.h1>
           {subtitle && (
-            <motion.p
-              variants={ITEM}
-              className="text-1xl md:text-1xl text-zinc-300 mt-2 max-w-3xl mx-auto"
-            >
+            <motion.p variants={ITEM} className="text-1xl md:text-1xl text-zinc-300 mt-2 max-w-3xl mx-auto">
               {subtitle}
             </motion.p>
           )}
@@ -83,7 +80,6 @@ function Section({ id, title, subtitle, children }) {
 
 /* ======================================================================
    Slide-in Skills Panel (two cards per row)
-   (This is the slider you wanted to keep. Trigger is in the hero CTA.)
 ====================================================================== */
 const PANEL_SECTIONS = [
   {
@@ -91,11 +87,7 @@ const PANEL_SECTIONS = [
     title: "Data Science",
     Icon: Cpu,
     note: "EDA • Feature Engineering • Model Building • Evaluation • Tuning",
-    items: [
-      "Python",
-      "Regression", "Classification", "Clustering",
-      "Prophet"
-    ],
+    items: ["Python", "Regression", "Classification", "Clustering", "Prophet"],
     accent: "from-emerald-400/20 to-sky-400/20",
   },
   {
@@ -103,17 +95,7 @@ const PANEL_SECTIONS = [
     title: "AI & Deep Learning",
     Icon: ServerCog,
     note: "Training • Fine-tuning • Embeddings • Transformers",
-    items: [
-      "Pytorch",
-      "TensorFlow",
-      "Keras",
-      "OpenAI",
-      "Hugging Face", 
-      "RNN",
-      "NLP",
-      "LLM",
-      "RAG"
-    ],
+    items: ["Pytorch", "TensorFlow", "Keras", "OpenAI", "Hugging Face", "RNN", "NLP", "LLM", "RAG"],
     accent: "from-violet-400/20 to-fuchsia-400/20",
   },
   {
@@ -121,7 +103,7 @@ const PANEL_SECTIONS = [
     title: "Databases",
     Icon: Database,
     note: "ETL • Advance query • Warehousing",
-    items: ["SQL","PostgreSQL", "MySQL", "NoSQL", "MongoDB", "Hive"],
+    items: ["SQL", "PostgreSQL", "MySQL", "NoSQL", "MongoDB", "Hive"],
     accent: "from-cyan-400/20 to-emerald-400/20",
   },
   {
@@ -137,7 +119,7 @@ const PANEL_SECTIONS = [
     title: "Cloud",
     Icon: Cloud,
     note: "AWS",
-    items: [ "S3", "Athena", "Glue", "IAM","Redshift","Crawler"],
+    items: ["S3", "Athena", "Glue", "IAM", "Redshift", "Crawler"],
     accent: "from-sky-400/20 to-blue-400/20",
   },
   {
@@ -145,7 +127,7 @@ const PANEL_SECTIONS = [
     title: "Project Management",
     Icon: Workflow,
     note: "Agile • Version control • Collaboration",
-    items: ["GitHub", "JIRA","Monday.com"],
+    items: ["GitHub", "JIRA", "Monday.com"],
     accent: "from-indigo-400/20 to-emerald-400/20",
   },
 ];
@@ -168,14 +150,7 @@ function SkillsSlideInPanelInline({ triggerClassName = "" }) {
         aria-haspopup="dialog"
         aria-expanded={open}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-5 h-5"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M3 12h18" />
           <path d="M3 6h18" />
           <path d="M3 18h18" />
@@ -226,10 +201,7 @@ function SkillsSlideInPanelInline({ triggerClassName = "" }) {
               if (query && filtered.length === 0) return null;
 
               return (
-                <div
-                  key={key}
-                  className={`rounded-2xl p-[1px] bg-gradient-to-br ${accent} border border-zinc-800/70`}
-                >
+                <div key={key} className={`rounded-2xl p-[1px] bg-gradient-to-br ${accent} border border-zinc-800/70`}>
                   <div className="rounded-2xl bg-zinc-950/90 backdrop-blur border border-zinc-900/70 p-4 h-full">
                     {/* Header */}
                     <div className="flex items-start gap-3">
@@ -262,9 +234,6 @@ function SkillsSlideInPanelInline({ triggerClassName = "" }) {
               );
             })}
           </div>
-
-          {/* Footer hint */}
-          <div className="text-[11px] text-zinc-500 text-center pt-3"></div>
         </div>
       </aside>
     </>
@@ -272,7 +241,7 @@ function SkillsSlideInPanelInline({ triggerClassName = "" }) {
 }
 
 /* -------------------------------------------
-   ScrollGuide (portal) — always show labels; active glows, others dimmed/blurred
+   ScrollGuide (portal) — dot + label in one flex row
 -------------------------------------------- */
 const SECTION_GUIDE = [
   { id: "home", label: "Home" },
@@ -310,11 +279,12 @@ function useScrollSpy(ids, rootMargin = "-40% 0px -55% 0px") {
   return active;
 }
 
-function ScrollGuideInner({ side = "right", topClass = "top-60" }) {
+function ScrollGuideInner({ side = "right", topClass = "top-100" }) {
   const ids = React.useMemo(() => SECTION_GUIDE.map((s) => s.id), []);
   const active = useScrollSpy(ids);
+
+  // horizontal position class
   const posSide = side === "right" ? "right-4 md:right-6" : "left-4 md:left-6";
-  const labelSide = side === "right" ? "right-full mr-2 text-right" : "left-full ml-2 text-left";
 
   return (
     <div
@@ -328,44 +298,50 @@ function ScrollGuideInner({ side = "right", topClass = "top-60" }) {
       ].join(" ")}
       aria-label="Section guide"
     >
-      <ul className="flex flex-col gap-1.5">
+      {/* vertical spacing between rows */}
+      <ul className="flex flex-col gap-1 md:gap-1">
         {SECTION_GUIDE.map((s) => {
           const isActive = s.id === active;
           return (
-            <li key={s.id} className="relative pointer-events-auto px-1 py-1">
-              {/* Dot */}
-              <a
-                href={`#${s.id}`}
-                aria-current={isActive ? "true" : undefined}
-                title={s.label}
+            <li key={s.id} className="pointer-events-auto px-0 py-0">
+              {/* Dot + Label as a single flex row */}
+              <div
                 className={[
-                  "block rounded-full",
-                  "w-2.5 h-2.5 md:w-3 md:h-3",
-                  "bg-zinc-700/80 border border-zinc-600/80",
-                  "transition outline-none hover:bg-zinc-600 hover:border-emerald-400 focus-visible:ring-2 focus-visible:ring-emerald-400/60",
-                  isActive
-                    ? "bg-sky-400 border-sky-400 ring-2 ring-sky-400/25 scale-110 shadow-[0_0_12px_rgba(16,185,129,0.7)]"
-                    : "",
-                ].join(" ")}
-              />
-              {/* Always-visible label */}
-              <span
-                className={[
-                  "absolute top-1/2 -translate-y-1/2",
-                  labelSide,
-                  "whitespace-nowrap max-w-[40vw] overflow-hidden text-ellipsis",
-                  "px-2 py-1 rounded-md backdrop-blur",
-                  "transition transform duration-150",
-                  // Base style for labels
-                  "bg-zinc-900/60 text-[12px] md:text-sm",
-                  // Active vs inactive states
-                  isActive
-                    ? "opacity-100 scale-100 text-sky-300 shadow-[0_0_20px_rgba(16,185,129,0.35)]"
-                    : "opacity-60 scale-[0.98] text-zinc-300/80 blur-[0.5px]",
+                  "flex items-center",
+                  side === "right" ? "flex-row-reverse" : "flex-row",
+                  "gap-3 md:gap-4",
                 ].join(" ")}
               >
-                {s.label}
-              </span>
+                {/* Dot */}
+                <a
+                  href={`#${s.id}`}
+                  aria-current={isActive ? "true" : undefined}
+                  title={s.label}
+                  className={[
+                    "block rounded-full",
+                    "w-2.5 h-2.5 md:w-3 md:h-3",
+                    "bg-zinc-700/80 border border-zinc-600/80",
+                    "transition outline-none hover:bg-zinc-600 hover:border-sky-400 focus-visible:ring-2 focus-visible:ring-sky-400/60",
+                    isActive
+                      ? "bg-sky-400 border-sky-400 ring-2 ring-sky-400/25 scale-110 shadow-[0_0_12px_rgba(56,189,248,0.7)]"
+                      : "",
+                  ].join(" ")}
+                />
+
+                {/* Label */}
+                <span
+                  className={[
+                    "px-0 py-0 rounded-md backdrop-blur",
+                    "text-[12px] md:text-sm",
+                    side === "right" ? "text-right" : "text-left",
+                    isActive
+                      ? "text-sky-300 bg-zinc-900/60 shadow-[0_0_20px_rgba(56,189,248,0.35)]"
+                      : "text-zinc-300/90 bg-zinc-900/50 opacity-75",
+                  ].join(" ")}
+                >
+                  {s.label}
+                </span>
+              </div>
             </li>
           );
         })}
@@ -421,12 +397,9 @@ export default function App() {
         {/* ------------------------------ NAV ------------------------------ */}
         <header className="sticky top-0 z-40 bg-zinc-950/70 backdrop-blur border-b border-zinc-800/80">
           <div className="relative max-w-7xl mx-auto h-16 flex items-center justify-between px-0">
-            {/* Left: logo */}
             <a href="#home" className="text-2xl font-extrabold tracking-tight text-emerald-300">
               SS
             </a>
-
-            {/* Right: direct buttons for each section (icon + text) */}
             <nav className="flex items-center gap-2">
               {NAV_LINKS.map(({ href, label, Icon }) => (
                 <a
@@ -445,7 +418,7 @@ export default function App() {
         {/* ------------------------------ HERO ----------------------------- */}
         <section id="home" className="relative pt-20 md:pt-30 pb-24 md:pb-28">
           <div className="w-full px-6 md:px-12 lg:px-22 flex justify-end gap-11 items-start">
-            {/* LEFT: TEXT (kept left-aligned) */}
+            {/* LEFT: TEXT */}
             <div className="pl-0 md:pl-20 lg:pl-30">
               <motion.h1
                 initial={{ opacity: 0, y: 10 }}
@@ -475,35 +448,24 @@ export default function App() {
                 className="mt-10 text-zinc-300 max-w-2xl leading-loose"
               >
                 <i>
-                  "In a world racing with technology, I see data as the compass that brings
-                  direction. I love building with it — whether it’s insights, models, or
-                  curiosity-driven experiments. What excites me most is how rapidly
-                  technology is evolving, and I thrive on keeping pace, mastering new ways to
-                  create solutions that are more intelligent, faster, and truly useful. Over
-                  time, this journey has shaped my ability to decode human behavior by
-                  integrating data with technology — a craft I continue to refine every day."
+                  "In a world racing with technology, I see data as the compass that brings direction. I love building
+                  with it — whether it’s insights, models, or curiosity-driven experiments. What excites me most is how
+                  rapidly technology is evolving, and I thrive on keeping pace, mastering new ways to create solutions
+                  that are more intelligent, faster, and truly useful. Over time, this journey has shaped my ability to
+                  decode human behavior by integrating data with technology — a craft I continue to refine every day."
                 </i>
               </motion.p>
 
-              {/* CTA row: download + email next to each other (tight gap), helper line below */}
+              {/* CTA row */}
               <div className="mt-10 flex flex-wrap items-start gap-4">
-                {/* LEFT: Resume row + helper text */}
                 <div className="flex flex-col gap-2">
-                  {/* Row 1: Download + Email side-by-side */}
                   <div className="flex items-center gap-2">
                     <a
                       href="Resume_Sayali Sawant_AI.pdf"
                       download
                       className="inline-flex items-center gap-2 px-3 py-2 rounded-md border border-zinc-800 text-zinc-200 text-sm hover:border-sky-500 hover:text-white transition w-fit flex-none whitespace-nowrap"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-4 h-4"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" />
                       </svg>
                       <span>Download Resume</span>
@@ -515,20 +477,12 @@ export default function App() {
                       aria-label="Email"
                       title="Email Sayali"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-5 h-5"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M22 6l-10 7L2 6" />
                         <rect x="2" y="6" width="20" height="12" rx="2" ry="2" />
                       </svg>
                     </a>
 
-                    {/* RIGHT: social icons + skills trigger */}
                     <div className="flex items-center gap-3">
                       <a
                         href="https://www.linkedin.com/in/sayalisawant11/"
@@ -537,14 +491,7 @@ export default function App() {
                         className="p-2 rounded-lg border border-zinc-800 text-zinc-300 hover:border-sky-500 hover:text-white transition"
                         aria-label="LinkedIn"
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="w-5 h-5"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                        >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                           <rect x="2" y="9" width="4" height="12" />
                           <circle cx="4" cy="4" r="2" />
@@ -557,12 +504,7 @@ export default function App() {
                         className="p-2 rounded-lg border border-zinc-800 text-zinc-300 hover:border-sky-500 hover:text-white transition"
                         aria-label="GitHub"
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="w-5 h-5"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                        >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.57v-2.01c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.35-1.76-1.35-1.76-1.1-.75.08-.73.08-.73 1.22.09 1.86 1.25 1.86 1.25 1.08 1.84 2.83 1.31 3.52 1 .11-.79.42-1.31.76-1.61-2.67-.3-5.48-1.33-5.48-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.9 1.24 3.22 0 4.61-2.81 5.63-5.49 5.93.43.37.81 1.09.81 2.2v3.26c0 .32.22.69.83.57A12 12 0 0 0 12 .5z" />
                         </svg>
                       </a>
@@ -572,7 +514,6 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Row 2: helper text + chat */}
                   <div className="flex items-center gap-3 flex-wrap">
                     <p className="text-sm text-white-300 m-0 whitespace-nowrap">Want to skip the scroll?</p>
                     <a
@@ -581,15 +522,7 @@ export default function App() {
                       rel="noreferrer"
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-zinc-800 text-zinc-300 hover:border-sky-500 hover:text-white transition"
                     >
-                      {/* chat bubble icon */}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-4 h-4"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8z" />
                       </svg>
                       <span className="text-sm">Chat with my AI Assistant</span>
@@ -609,28 +542,21 @@ export default function App() {
               <img src="/me.png" alt="Sayali avatar" className="w-[500px] max-w-full h-auto object-contain" />
               <div
                 className="pointer-events-none absolute inset-0 blur-3xl opacity-20 -z-10"
-                style={{
-                  background:
-                    "radial-gradient(500px 300px at 60% 40%, rgba(16,185,129,.35), transparent 60%)",
-                }}
+                style={{ background: "radial-gradient(500px 300px at 60% 40%, rgba(16,185,129,.35), transparent 60%)" }}
               />
             </motion.div>
           </div>
         </section>
 
         {/* -------------------------- EXPERIENCE --------------------------- */}
-        <Section
-          id="experience"
-          title="Professional Experience"
-          subtitle="Stories of turning raw data into business wins — explore my journey below."
-        >
+        <Section id="experience" title="Professional Experience" subtitle="Stories of turning raw data into business wins — explore my journey below.">
           {(() => {
             const JOBS = [
               {
                 key: "agr",
                 company: "AGR Knowledge Services Pvt Ltd.",
                 city: "Mumbai, India",
-                period: "Mumbai, India | Dec 2021 – Jun 2024",
+                period: "Dec 2021 – Jun 2024",
                 roles: [
                   {
                     title: "Senior Analyst (Business Intelligence)",
@@ -648,7 +574,6 @@ export default function App() {
                   {
                     title: "Analyst (Market Research)",
                     bullets: [
-                      
                       "Built customer segmentation and conversion-probability models across performance-marketing data and omnichannel sales data, improving marketing ROI by 15%.",
                       "Automated data cleanup and performed statistical analysis across marketing, sales, and customer data to uncover performance drivers and validate insights for decision support",
                       "Led requirements gathering sessions with stakeholders; aligned KPIs and success metrics with business goals.",
@@ -664,7 +589,7 @@ export default function App() {
                 key: "whitehat",
                 company: "WhiteHat Education Technology Pvt Ltd.",
                 city: "Mumbai, India",
-                period: "Mumbai, India | Jun 2020 – Dec 2021",
+                period: "Jun 2020 – Dec 2021",
                 roles: [
                   {
                     title: "Coding Instructor",
@@ -681,7 +606,7 @@ export default function App() {
                 key: "mrvc",
                 company: "Mumbai Railway Vikas Corporation Ltd. (MRVC)",
                 city: "Mumbai, India",
-                period: "Mumbai, India | Feb 2016 – Aug 2018",
+                period: "Feb 2016 – Aug 2018",
                 roles: [
                   {
                     title: "Business Analyst",
@@ -705,20 +630,14 @@ export default function App() {
             const [active, setActive] = useState(JOBS[0].key);
             const selected = JOBS.find((j) => j.key === active) || JOBS[0];
 
-            const STAGGER_LOCAL = {
-              hidden: { opacity: 0 },
-              show: { opacity: 1, transition: { staggerChildren: 0.06 } },
-            };
-            const ITEM_LOCAL = {
-              hidden: { opacity: 0, y: 8 },
-              show: { opacity: 1, y: 0 },
-            };
+            const STAGGER_LOCAL = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.06 } } };
+            const ITEM_LOCAL = { hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0 } };
 
             return (
               <div className="mt-8 space-y-8">
                 {/* Company Pills */}
                 <motion.div
-                  className="flex justify-center flex-wrap gap-3"
+                  className="flex justify-center flex-wrap gap-3 overflow-x-auto px-2"
                   variants={STAGGER_LOCAL}
                   initial="hidden"
                   animate="show"
@@ -731,14 +650,15 @@ export default function App() {
                       aria-pressed={active === j.key}
                       className={[
                         "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm transition border",
+                        "whitespace-nowrap leading-tight overflow-hidden",
                         "focus:outline-none focus:ring-2 focus:ring-emerald-400/60",
                         active === j.key
                           ? "bg-emerald-600/90 text-white border-emerald-500 shadow-[0_0_22px] shadow-emerald-500/30"
                           : "bg-zinc-900/70 text-zinc-300 border-zinc-700 hover:bg-zinc-800",
                       ].join(" ")}
                     >
-                      <Briefcase className="w-4 h-4" />
-                      {j.company}
+                      <Briefcase className="w-4 h-4 flex-none" />
+                      <span className="truncate max-w-[22ch] md:max-w-none">{j.company}</span>
                     </motion.button>
                   ))}
                 </motion.div>
@@ -757,7 +677,7 @@ export default function App() {
                       <h3 className="text-2xl md:text-3xl font-bold">{selected.company}</h3>
                       <div className="flex items-center gap-4 text-emerald-400">
                         <div className="inline-flex items-center gap-2">
-                          
+                          <Calendar className="w-4 h-4" />
                           <span className="text-sm font-medium">{selected.period}</span>
                         </div>
                         <div className="hidden md:inline-flex items-center gap-2 text-emerald-400/80">
@@ -827,198 +747,186 @@ export default function App() {
           })()}
         </Section>
 
-        
+        {/* ==== Projects & Experiments (drop-in, title-safe) ==== */}
+        <Section
+          id="projects"
+          title="Projects & Experiments"
+          subtitle="A showcase of hands-on data, AI, and machine learning projects — from exploration to execution."
+        >
+          {(() => {
+            const PROJECTS_RAW = [
+              {
+                id: "instacart-intelligence",
+                title: "An AI-driven conversational resume chatbot",
+                desc:
+                  " A full-stack RAG chatbot (FastAPI, FAISS + MiniLM) with OpenAI gpt-4o-mini replacing static resumes, delivering fast, context-aware answers to queries while showcasing end-to-end technical capability.",
+                tech: ["FastAPI", "FAISS", "all-MiniLM-L6-v2", "OpenAI gpt-4o-mini"],
+                readUrl:
+                  "https://github.com/SayaliSawant0101/Instacart-Customer-Intelligence/blob/main/README.md",
+                codeUrl: "https://resumechatbot.netlify.app/",
+                img: "8.jpg",
+                alt: "Resume chatbot thumbnail",
+              },
+              {
+                title: "LLM-powered social listening system",
+                desc:
+                  "End-to-end pipeline on tweets using AWS S3 / Glue / Athena; delivers sentiment analysis (twitter-roberta-base-sentiment), Aspect based sentiment analysis (bart-large-mnli), theme based clusters via BERTopic (e5-base-v2) with GPT-4o-mini, and executive summaries - delivering interactive summary report for stakeholders",
+                tech: [
+                  "ETL",
+                  "OpenAI gpt-4o-mini",
+                  "LLM",
+                  "NLP",
+                  "Sentiment Analysis",
+                  "LLM Summary",
+                  "Aspect/Theme Analysis",
+                ],
+                readUrl: "https://github.com/SayaliSawant0101/LLM-powered-social-listening-system",
+                img: "10.jpeg",
+                alt: "Social listening thumbnail",
+              },
+              {
+                id: "imdb-sentiment",
+                title: "Customer Intelligence & Reorder Prediction System",
+                desc:
+                  "A LightGBM reorder prediction model (ROC-AUC ≈ 0.84) to make next basket suggestions. Segmented customers via unsupervised learning for precision marketing, applied Association Rules for bundling, and built a Word2Vec recommendation engine that helps product discovery and upsell & cross-sell opportunities",
+                tech: ["XGBoost", "LightGBM", "CatBoost", "SHAP", "KMeans", "PCA", "DBSCAN", "Apriori", "Word2Vec"],
+                readUrl:
+                  "https://github.com/SayaliSawant0101/Instacart-Customer-Intelligence/blob/main/README.md",
+                img: "2.png",
+                alt: "Instacart project thumbnail",
+              },
+            ];
 
-{/* ==== Projects & Experiments (drop-in, title-safe) ==== */}
-<Section
-  id="projects"
-  title="Projects & Experiments"
-  subtitle="A showcase of hands-on data, AI, and machine learning projects — from exploration to execution."
->
-  {(() => {
-    // --- If you add/edit projects, you can freely change titles/descriptions.
-    // --- Keep `id` if you want absolute stability; otherwise it's auto-made from the title.
+            const slugify = (s) =>
+              (s || "")
+                .toString()
+                .toLowerCase()
+                .trim()
+                .replace(/[^\w\s-]/g, "")
+                .replace(/\s+/g, "-")
+                .replace(/-+/g, "-");
 
-    const PROJECTS_RAW = [
-      {
-        id: "instacart-intelligence", // optional but recommended: keep this stable
-        title: "An AI-driven conversational resume chatbot",
-        desc:
-          " A full-stack RAG chatbot (FastAPI, FAISS + MiniLM) with OpenAI gpt-4o-mini replacing static resumes, delivering fast, context-aware answers to queries while showcasing end-to-end technical capability.",
-        tech: ["FastAPI", "FAISS", "all-MiniLM-L6-v2", "OpenAI gpt-4o-mini"],
-        readUrl: "https://github.com/SayaliSawant0101/Instacart-Customer-Intelligence/blob/main/README.md",
-        codeUrl: "https://resumechatbot.netlify.app/",
-        img: "8.jpg",
-        alt: "Instacart project thumbnail",
-      },
-      {
-        // id omitted on purpose → will be generated from title
-        title: "LLM-powered social listening system",
-        desc:
-          "End-to-end pipeline on tweets using AWS S3 / Glue / Athena; delivers sentiment analysis (twitter-roberta-base-sentiment), Aspect based sentiment analysis (bart-large-mnli), theme based clusters via BERTopic (e5-base-v2) with GPT-4o-mini, and executive summaries - delivering interactive summary report for stakeholders",
-        tech: ["ETL", "OpenAI gpt-4o-mini", "LLM", "NLP", "Sentiment Analysis", "LLM Summary","Aspect/Theme Analysis"],
-        readUrl: "https://github.com/SayaliSawant0101/LLM-powered-social-listening-system",
-        img: "10.jpeg",
-        alt: "Patient segmentation project thumbnail",
-      },
-      {
-        id: "imdb-sentiment",
-        title: "Customer Intelligence & Reorder Prediction System",
-        desc:
-          "A LightGBM reorder prediction model (ROC-AUC ≈ 0.84) to make next basket suggestions. Segmented customers via unsupervised learning for precision marketing, applied Association Rules for bundling, and built a Word2Vec recommendation engine that helps product discovery and upsell & cross-sell opportunities",
-        tech: ["XGBoost", "LightGBM", "CatBoost", "SHAP", "KMeans", "PCA", "DBSCAN", "Apriori", "Word2Vec"],
-        readUrl: "https://github.com/SayaliSawant0101/Instacart-Customer-Intelligence/blob/main/README.md",
-        img: "2.png",
-        alt: "Instacart project thumbnail",
-      },
-      
-      // === Add more freely ===
-      // {
-      //   title: "LLM-Powered Social Listening System",
-      //   desc: "Tracks ~50K Walmart tweets over 3 months on AWS (S3/Glue/Athena); sentiment via CardiffNLP, ABSA via BART-MNLI, BERTopic with e5 embeddings, GPT-4o-mini for theme naming & exec briefs; interactive dashboard + RAG Q&A.",
-      //   tech: ["AWS", "Athena", "Glue", "BERTopic", "e5-base-v2", "CardiffNLP", "BART-MNLI", "RAG", "FAISS"],
-      //   readUrl: "https://github.com/yourrepo/social-listening",
-      //   codeUrl: "https://your-live-demo.com",
-      //   img: "walmart.png",
-      //   alt: "Social listening dashboard thumbnail",
-      // },
-    ];
+            const PROJECTS = PROJECTS_RAW.map((p, idx) => {
+              const baseId = p.id || slugify(p.title || `project-${idx + 1}`);
+              const safeId = `${baseId}-${idx}`;
+              return {
+                id: safeId,
+                _dataId: p.id || baseId,
+                title: p.title || "Untitled Project",
+                desc: p.desc || "",
+                tech: Array.isArray(p.tech) ? p.tech : [],
+                readUrl: p.readUrl || "",
+                codeUrl: p.codeUrl || "",
+                img: p.img || "",
+                alt: p.alt || p.title || "Project thumbnail",
+              };
+            });
 
-    // ------- Helpers -------
-    const slugify = (s) =>
-      (s || "")
-        .toString()
-        .toLowerCase()
-        .trim()
-        .replace(/[^\w\s-]/g, "")
-        .replace(/\s+/g, "-")
-        .replace(/-+/g, "-");
+            const STAGGER_SAFE =
+              typeof STAGGER !== "undefined"
+                ? STAGGER
+                : { hidden: { opacity: 1 }, show: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.04 } } };
 
-    // Normalize + ensure unique, stable keys
-    const PROJECTS = PROJECTS_RAW.map((p, idx) => {
-      const baseId = p.id || slugify(p.title || `project-${idx + 1}`);
-      // If multiple with same id/title exist, suffix by index to keep keys unique but still stable
-      const safeId = `${baseId}-${idx}`;
-      return {
-        id: safeId, // used only as React key; keep your original p.id in data if you want elsewhere
-        _dataId: p.id || baseId, // carry the user’s id (if provided) separately
-        title: p.title || "Untitled Project",
-        desc: p.desc || "",
-        tech: Array.isArray(p.tech) ? p.tech : [],
-        readUrl: p.readUrl || "",
-        codeUrl: p.codeUrl || "",
-        img: p.img || "",
-        alt: p.alt || p.title || "Project thumbnail",
-      };
-    });
+            const ITEM_SAFE =
+              typeof ITEM !== "undefined"
+                ? ITEM
+                : { hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0, transition: { duration: 0.35 } } };
 
-    // Use existing STAGGER/ITEM if present in your file, else fallback here
-    const STAGGER_SAFE =
-      typeof STAGGER !== "undefined"
-        ? STAGGER
-        : { hidden: { opacity: 1 }, show: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.04 } } };
+            const Tech = ({ children }) => (
+              <span className="px-2.5 py-1 rounded-full border border-emerald-400/30 bg-emerald-400/10 text-xs text-emerald-300">
+                {children}
+              </span>
+            );
 
-    const ITEM_SAFE =
-      typeof ITEM !== "undefined"
-        ? ITEM
-        : { hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0, transition: { duration: 0.35 } } };
+            const FALLBACK = "/projects/placeholder.jpg";
 
-    const Tech = ({ children }) => (
-      <span className="px-2.5 py-1 rounded-full border border-emerald-400/30 bg-emerald-400/10 text-xs text-emerald-300">
-        {children}
-      </span>
-    );
+            return (
+              <motion.div
+                className="grid md:grid-cols-3 gap-6 items-stretch"
+                variants={STAGGER_SAFE}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.2 }}
+              >
+                {PROJECTS.map((p) => (
+                  <motion.div key={p.id} variants={ITEM_SAFE}>
+                    <div className="group h-full rounded-2xl border border-zinc-800 bg-zinc-900/60 backdrop-blur-sm p-6 transition-all duration-300 hover:border-sky-500/60 hover:shadow-[0_0_60px_-20px_rgba(56,189,248,0.65)]">
+                      <div className="text-center">
+                        <h3 className="text-lg font-semibold">{p.title}</h3>
+                      </div>
 
-    const FALLBACK = "/projects/placeholder.jpg";
+                      <div className="mt-4 overflow-hidden rounded-xl">
+                        <img
+                          loading="lazy"
+                          src={p.img || FALLBACK}
+                          alt={p.alt}
+                          className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                          onError={(e) => {
+                            if (FALLBACK && e.currentTarget.src !== FALLBACK) {
+                              e.currentTarget.src = FALLBACK;
+                            }
+                          }}
+                        />
+                      </div>
 
-    return (
-      <motion.div
-        className="grid md:grid-cols-3 gap-6 items-stretch"
-        variants={STAGGER_SAFE}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        {PROJECTS.map((p) => (
-          <motion.div key={p.id} variants={ITEM_SAFE}>
-            <div className="group h-full rounded-2xl border border-zinc-800 bg-zinc-900/60 backdrop-blur-sm p-6 transition-all duration-300 hover:border-sky-500/60 hover:shadow-[0_0_60px_-20px_rgba(56,189,248,0.65)]">
-              <div className="text-center">
-                <h3 className="text-lg font-semibold">{p.title}</h3>
-              </div>
+                      {p.desc ? <p className="mt-4 text-sm text-gray-300">{p.desc}</p> : null}
 
-              <div className="mt-4 overflow-hidden rounded-xl">
-                <img
-                  loading="lazy"
-                  src={p.img || FALLBACK}
-                  alt={p.alt}
-                  className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                  onError={(e) => {
-                    if (FALLBACK && e.currentTarget.src !== FALLBACK) {
-                      e.currentTarget.src = FALLBACK;
-                    }
-                  }}
-                />
-              </div>
+                      {p.tech.length > 0 && (
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          {p.tech.map((t, i) => (
+                            <Tech key={`${p.id}-tech-${i}`}>{t}</Tech>
+                          ))}
+                        </div>
+                      )}
 
-              {p.desc ? <p className="mt-4 text-sm text-gray-300">{p.desc}</p> : null}
+                      {(p.readUrl || p.codeUrl) && (
+                        <div className="mt-6 flex gap-2">
+                          {p.readUrl ? (
+                            typeof Button !== "undefined" ? (
+                              <Button size="sm" variant="secondary" asChild>
+                                <a href={p.readUrl} target="_blank" rel="noreferrer">
+                                  Read on GitHub
+                                </a>
+                              </Button>
+                            ) : (
+                              <a
+                                href={p.readUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center rounded-md border border-zinc-700 px-3 py-1.5 text-sm hover:bg-zinc-800"
+                              >
+                                Read on GitHub
+                              </a>
+                            )
+                          ) : null}
 
-              {p.tech.length > 0 && (
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {p.tech.map((t, i) => (
-                    <Tech key={`${p.id}-tech-${i}`}>{t}</Tech>
-                  ))}
-                </div>
-              )}
-
-              {(p.readUrl || p.codeUrl) && (
-                <div className="mt-6 flex gap-2">
-                  {p.readUrl ? (
-                    typeof Button !== "undefined" ? (
-                      <Button size="sm" variant="secondary" asChild>
-                        <a href={p.readUrl} target="_blank" rel="noreferrer">
-                          Read on GitHub
-                        </a>
-                      </Button>
-                    ) : (
-                      <a
-                        href={p.readUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center rounded-md border border-zinc-700 px-3 py-1.5 text-sm hover:bg-zinc-800"
-                      >
-                        Read on GitHub
-                      </a>
-                    )
-                  ) : null}
-
-                  {p.codeUrl ? (
-                    typeof Button !== "undefined" ? (
-                      <Button size="sm" variant="secondary" asChild>
-                        <a href={p.codeUrl} target="_blank" rel="noreferrer">
-                          Launch App
-                        </a>
-                      </Button>
-                    ) : (
-                      <a
-                        href={p.codeUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center rounded-md border border-zinc-700 px-3 py-1.5 text-sm hover:bg-zinc-800"
-                      >
-                        Launch App
-                      </a>
-                    )
-                  ) : null}
-                </div>
-              )}
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
-    );
-  })()}
-</Section>
-
+                          {p.codeUrl ? (
+                            typeof Button !== "undefined" ? (
+                              <Button size="sm" variant="secondary" asChild>
+                                <a href={p.codeUrl} target="_blank" rel="noreferrer">
+                                  Launch App
+                                </a>
+                              </Button>
+                            ) : (
+                              <a
+                                href={p.codeUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center rounded-md border border-zinc-700 px-3 py-1.5 text-sm hover:bg-zinc-800"
+                              >
+                                Launch App
+                              </a>
+                            )
+                          ) : null}
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            );
+          })()}
+        </Section>
 
         {/* ------------------------------ BLOGS ---------------------------- */}
         <Section
@@ -1055,12 +963,7 @@ export default function App() {
                   const m = (p.slug || "").match(/\d{4}-\d{2}-\d{2}/);
                   if (m) dt = toDate(m[0]);
                 }
-                return {
-                  ...p,
-                  __date: dt,
-                  __dateLabel: labelDate(dt),
-                  __read: readTime(p.excerpt),
-                };
+                return { ...p, __date: dt, __dateLabel: labelDate(dt), __read: readTime(p.excerpt) };
               });
               list.sort((a, b) => (b.__date ? +b.__date : 0) - (a.__date ? +a.__date : 0));
               return list.slice(0, 3);
@@ -1151,7 +1054,7 @@ export default function App() {
                 degree: "Pace University",
                 school: "Seidenberg School of Computer Science and Information Systems",
                 city: "New York, USA",
-                period: "New York, USA | 2024 – 2025",
+                period: "2024 – 2025",
                 highlight: "GPA: 3.9",
                 courses: ["Scalable Databases", "Machine Learning", "Data Mining", "Practical Data Science", "Algrithum for Data Science"],
               },
@@ -1162,7 +1065,7 @@ export default function App() {
                 degree: "University of Mumbai",
                 school: "St. Francis Institute of Management Studies and Research",
                 city: "Mumbai, India",
-                period: "Mumbai, India | 2018 – 2020",
+                period: "2018 – 2020",
                 highlight: "CGPA: 8.9/10",
                 courses: [
                   "Consumer Behavior",
@@ -1171,7 +1074,7 @@ export default function App() {
                   "Marketing Management",
                   "International Business",
                   "Finance & Economics",
-                  "Strategic Management"
+                  "Strategic Management",
                 ],
               },
               {
@@ -1181,10 +1084,15 @@ export default function App() {
                 degree: "University of Mumbai",
                 school: "Viva Institute of Technology",
                 city: "Mumbai, India",
-                period: "Mumbai, India | 2011 – 2015",
+                period: "2011 – 2015",
                 highlight: "CGPA: 3/4",
                 courses: [
-                "Computer Architecture","Data Structures and Algorithms", "Embedded Systems", "Operating Systems", "Computer Networks", "Robotics and Automation",
+                  "Computer Architecture",
+                  "Data Structures and Algorithms",
+                  "Embedded Systems",
+                  "Operating Systems",
+                  "Computer Networks",
+                  "Robotics and Automation",
                 ],
               },
             ];
@@ -1192,14 +1100,8 @@ export default function App() {
             const [active, setActive] = useState(EDU[0].key);
             const selected = EDU.find((e) => e.key === active) || EDU[0];
 
-            const STAGGER_LOCAL = {
-              hidden: { opacity: 0 },
-              show: { opacity: 1, transition: { staggerChildren: 0.06 } },
-            };
-            const ITEM_LOCAL = {
-              hidden: { opacity: 0, y: 8 },
-              show: { opacity: 1, y: 0 },
-            };
+            const STAGGER_LOCAL = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.06 } } };
+            const ITEM_LOCAL = { hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0 } };
 
             return (
               <div className="mt-8 space-y-8">
@@ -1239,11 +1141,11 @@ export default function App() {
                       <h3 className="text-2xl md:text-3xl font-bold">{selected.degree}</h3>
                       <div className="flex items-center gap-4 text-emerald-400">
                         <div className="inline-flex items-center gap-2">
-                         
+                          <Calendar className="w-4 h-4" />
                           <span className="text-sm font-medium">{selected.period}</span>
                         </div>
                         <div className="hidden md:inline-flex items-center gap-2 text-emerald-400/80">
-                          <GraduationCap className="w-4 h-4" />
+                          <MapPin className="w-4 h-4" />
                           <span className="text-sm">{selected.city}</span>
                         </div>
                       </div>
@@ -1254,7 +1156,7 @@ export default function App() {
                       href={selected.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="block text-lg md:text-xl font-semibold text-emerald-300 hover:text-emerald-2 00 transition"
+                      className="block text-lg md:text-xl font-semibold text-emerald-300 hover:text-emerald-200 transition"
                     >
                       {selected.name}, {selected.school}
                     </a>
@@ -1398,7 +1300,6 @@ export default function App() {
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M22 6l-10 7L2 6" />
-                    <rect x="2" y="6" width="20" height="12" rx="2" ry="2" />
                   </svg>
                 </motion.a>
                 <motion.a
@@ -1421,7 +1322,6 @@ export default function App() {
                   target="_blank"
                   rel="noreferrer"
                   className="p-2 rounded-lg border border-zinc-800 text-zinc-300 hover:border-sky-500 hover:text-white transition"
-                  aria-label="GitHub"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.57v-2.01c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.35-1.76-1.35-1.76-1.1-.75.08-.73.08-.73 1.22.09 1.86 1.25 1.86 1.25 1.08 1.84 2.83 1.31 3.52 1 .11-.79.42-1.31.76-1.61-2.67-.3-5.48-1.33-5.48-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.9 1.24 3.22 0 4.61-2.81 5.63-5.49 5.93.43.37.81 1.09.81 2.2v3.26c0 .32.22.69.83.57A12 12 0 0 0 12 .5z" />
@@ -1441,24 +1341,12 @@ export default function App() {
           <div className="max-w-6xl mx-auto px-6 text-sm text-zinc-400 flex items-center justify-between">
             <p />
             <div className="flex gap-4">
-              <a href="#home" className="hover:text-white">
-                Top
-              </a>
-              <a href="#experience" className="hover:text-white">
-                Professional Experience
-              </a>
-              <a href="#education" className="hover:text-white">
-                Academic Background
-              </a>
-              <a href="#projects" className="hover:text-white">
-                Projects
-              </a>
-              <a href="#blog" className="hover:text-white">
-                Blogs
-              </a>
-              <a href="#contact" className="hover:text-white">
-                Contact
-              </a>
+              <a href="#home" className="hover:text-white">Top</a>
+              <a href="#experience" className="hover:text-white">Professional Experience</a>
+              <a href="#education" className="hover:text-white">Academic Background</a>
+              <a href="#projects" className="hover:text-white">Projects</a>
+              <a href="#blog" className="hover:text-white">Blogs</a>
+              <a href="#contact" className="hover:text-white">Contact</a>
             </div>
           </div>
         </footer>
