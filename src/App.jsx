@@ -417,9 +417,9 @@ export default function App() {
 
         {/* ------------------------------ HERO ----------------------------- */}
         <section id="home" className="relative pt-12 md:pt-20 lg:pt-30 pb-16 md:pb-24 lg:pb-28">
-          <div className="w-full px-4 sm:px-6 md:px-12 lg:px-22 flex justify-start gap-1 md:gap-2 items-start ml-8 md:ml-16 lg:ml-24">
+          <div className="w-full px-4 sm:px-6 md:px-12 lg:px-22 flex justify-end gap-6 md:gap-11 items-start">
             {/* LEFT: TEXT */}
-            <div className="pl-4 md:pl-10 lg:pl-16">
+            <div className="pl-0 md:pl-20 lg:pl-30">
               <motion.h1
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
@@ -539,7 +539,7 @@ export default function App() {
               viewport={{ once: true, amount: 0.2 }}
               className="relative flex justify-center z-0"
             >
-              <img src="/me.png" alt="Sayali avatar" className="w-[400px] sm:w-[500px] md:w-[650px] max-w-full h-auto object-contain" />
+              <img src="/me.png" alt="Sayali avatar" className="w-[300px] sm:w-[400px] md:w-[500px] max-w-full h-auto object-contain" />
               <div
                 className="pointer-events-none absolute inset-0 blur-3xl opacity-20 -z-10"
                 style={{ background: "radial-gradient(500px 300px at 60% 40%, rgba(16,185,129,.35), transparent 60%)" }}
