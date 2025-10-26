@@ -42,8 +42,8 @@ const ITEM = {
 -------------------------------------------- */
 function Section({ id, title, subtitle, children }) {
   return (
-    <section id={id} className="py-16 md:py-24 scroll-mt-20">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id={id} className="py-12 md:py-16 lg:py-24 scroll-mt-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           variants={STAGGER}
           initial="hidden"
@@ -169,7 +169,7 @@ function SkillsSlideInPanelInline({ triggerClassName = "" }) {
       {/* Sliding panel */}
       <aside
         className={[
-          "fixed top-0 left-0 z-50 h-screen w-[760px] max-w-[96vw]",
+          "fixed top-0 left-0 z-50 h-screen w-full sm:w-[400px] md:w-[600px] lg:w-[760px] max-w-[96vw]",
           "bg-zinc-950 border-r border-zinc-800",
           "transition-transform",
           open ? "translate-x-0" : "-translate-x-full",
@@ -195,7 +195,7 @@ function SkillsSlideInPanelInline({ triggerClassName = "" }) {
 
         {/* Content: two cards per row */}
         <div className="h-[calc(100vh-116px)] overflow-y-auto p-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {PANEL_SECTIONS.map(({ key, title, Icon, note, items, accent }) => {
               const filtered = query ? items.filter((t) => t.toLowerCase().includes(query)) : items;
               if (query && filtered.length === 0) return null;
@@ -396,18 +396,18 @@ export default function App() {
       <main className="relative z-10">
         {/* ------------------------------ NAV ------------------------------ */}
         <header className="sticky top-0 z-40 bg-zinc-950/70 backdrop-blur border-b border-zinc-800/80">
-          <div className="relative max-w-7xl mx-auto h-16 flex items-center justify-between px-0">
-            <a href="#home" className="text-2xl font-extrabold tracking-tight text-emerald-300">
+          <div className="relative max-w-7xl mx-auto h-16 flex items-center justify-between px-4 md:px-6">
+            <a href="#home" className="text-xl sm:text-2xl font-extrabold tracking-tight text-emerald-300">
               SS
             </a>
-            <nav className="flex items-center gap-2">
+            <nav className="flex items-center gap-1 sm:gap-2">
               {NAV_LINKS.map(({ href, label, Icon }) => (
                 <a
                   key={href}
                   href={href}
-                  className="inline-flex items-center gap-2 px-3 py-1 rounded-lg border border-zinc-800 text-zinc-300 hover:border-sky-500 hover:text-white transition text-sm"
+                  className="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 rounded-lg border border-zinc-800 text-zinc-300 hover:border-sky-500 hover:text-white transition text-xs sm:text-sm"
                 >
-                  <Icon className="w-4 h-4" aria-hidden="true" />
+                  <Icon className="w-3 h-3 sm:w-4 sm:h-4" aria-hidden="true" />
                   <span>{label}</span>
                 </a>
               ))}
@@ -416,17 +416,17 @@ export default function App() {
         </header>
 
         {/* ------------------------------ HERO ----------------------------- */}
-        <section id="home" className="relative pt-20 md:pt-30 pb-24 md:pb-28">
-          <div className="w-full px-6 md:px-12 lg:px-22 flex justify-end gap-11 items-start">
+        <section id="home" className="relative pt-12 md:pt-20 lg:pt-30 pb-16 md:pb-24 lg:pb-28">
+          <div className="w-full px-4 sm:px-6 md:px-12 lg:px-22 flex justify-start gap-1 md:gap-2 items-start ml-8 md:ml-16 lg:ml-24">
             {/* LEFT: TEXT */}
-            <div className="pl-0 md:pl-20 lg:pl-30">
+            <div className="pl-4 md:pl-10 lg:pl-16">
               <motion.h1
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
                 viewport={{ once: true }}
-                className="text-4xl md:text-5xl font-montserrat font-bold leading-loose tracking-tight"
+                className="text-3xl sm:text-4xl md:text-5xl font-montserrat font-bold leading-loose tracking-tight"
               >
-                Hi, I’m{" "}
+                Hi, I'm{" "}
                 <span className="font-montserrat font-extrabold text-sky-400 drop-shadow-[0_0_4px_rgba(56,189,248,0.6)]">
                   Sayali
                 </span>
@@ -436,20 +436,20 @@ export default function App() {
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
                 viewport={{ once: true }}
-                className="text-4xl font-light italic text-emerald-400 mt-2"
+                className="text-2xl sm:text-3xl md:text-4xl font-light italic text-emerald-400 mt-2"
               >
-                <i>Master’s in Data Science | AI/ML Enthusiast</i>
+                <i>Master's in Data Science | AI/ML Enthusiast</i>
               </motion.h6>
 
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.05 } }}
                 viewport={{ once: true }}
-                className="mt-10 text-zinc-300 max-w-2xl leading-loose"
+                className="mt-6 md:mt-10 text-sm sm:text-base md:text-lg text-zinc-300 max-w-2xl leading-loose"
               >
                 <i>
                   "In a world racing with technology, I see data as the compass that brings direction. I love building
-                  with it — whether it’s insights, models, or curiosity-driven experiments. What excites me most is how
+                  with it — whether it's insights, models, or curiosity-driven experiments. What excites me most is how
                   rapidly technology is evolving, and I thrive on keeping pace, mastering new ways to create solutions
                   that are more intelligent, faster, and truly useful. Over time, this journey has shaped my ability to
                   decode human behavior by integrating data with technology — a craft I continue to refine every day."
@@ -457,18 +457,18 @@ export default function App() {
               </motion.p>
 
               {/* CTA row */}
-              <div className="mt-10 flex flex-wrap items-start gap-4">
+              <div className="mt-6 md:mt-10 flex flex-wrap items-start gap-2 md:gap-4">
                 <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <a
                       href="Resume_Sayali Sawant_AI.pdf"
                       download
-                      className="inline-flex items-center gap-2 px-3 py-2 rounded-md border border-zinc-800 text-zinc-200 text-sm hover:border-sky-500 hover:text-white transition w-fit flex-none whitespace-nowrap"
+                      className="inline-flex items-center gap-2 px-2 sm:px-3 py-2 rounded-md border border-zinc-800 text-zinc-200 text-xs sm:text-sm hover:border-sky-500 hover:text-white transition w-fit flex-none"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" />
                       </svg>
-                      <span>Download Resume</span>
+                      <span className="whitespace-nowrap">Download Resume</span>
                     </a>
 
                     <a
@@ -477,13 +477,13 @@ export default function App() {
                       aria-label="Email"
                       title="Email Sayali"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M22 6l-10 7L2 6" />
                         <rect x="2" y="6" width="20" height="12" rx="2" ry="2" />
                       </svg>
                     </a>
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 md:gap-3">
                       <a
                         href="https://www.linkedin.com/in/sayalisawant11/"
                         target="_blank"
@@ -491,7 +491,7 @@ export default function App() {
                         className="p-2 rounded-lg border border-zinc-800 text-zinc-300 hover:border-sky-500 hover:text-white transition"
                         aria-label="LinkedIn"
                       >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                           <rect x="2" y="9" width="4" height="12" />
                           <circle cx="4" cy="4" r="2" />
@@ -504,7 +504,7 @@ export default function App() {
                         className="p-2 rounded-lg border border-zinc-800 text-zinc-300 hover:border-sky-500 hover:text-white transition"
                         aria-label="GitHub"
                       >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.57v-2.01c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.35-1.76-1.35-1.76-1.1-.75.08-.73.08-.73 1.22.09 1.86 1.25 1.86 1.25 1.08 1.84 2.83 1.31 3.52 1 .11-.79.42-1.31.76-1.61-2.67-.3-5.48-1.33-5.48-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.9 1.24 3.22 0 4.61-2.81 5.63-5.49 5.93.43.37.81 1.09.81 2.2v3.26c0 .32.22.69.83.57A12 12 0 0 0 12 .5z" />
                         </svg>
                       </a>
@@ -514,18 +514,18 @@ export default function App() {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <p className="text-sm text-white-300 m-0 whitespace-nowrap">Want to skip the scroll?</p>
+                  <div className="flex items-center gap-2 md:gap-3 flex-wrap">
+                    <p className="text-xs sm:text-sm text-white-300 m-0 whitespace-nowrap">Want to skip the scroll?</p>
                     <a
                       href="https://resumechatbot.netlify.app/"
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-zinc-800 text-zinc-300 hover:border-sky-500 hover:text-white transition"
+                      className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg border border-zinc-800 text-zinc-300 hover:border-sky-500 hover:text-white transition text-xs sm:text-sm"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8z" />
                       </svg>
-                      <span className="text-sm">Chat with my AI Assistant</span>
+                      <span>Chat with my AI Assistant</span>
                     </a>
                   </div>
                 </div>
@@ -537,9 +537,9 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1, transition: { duration: 0.6 } }}
               viewport={{ once: true, amount: 0.2 }}
-              className="relative flex justify-center z-0 "
+              className="relative flex justify-center z-0"
             >
-              <img src="/me.png" alt="Sayali avatar" className="w-[500px] max-w-full h-auto object-contain" />
+              <img src="/me.png" alt="Sayali avatar" className="w-[400px] sm:w-[500px] md:w-[650px] max-w-full h-auto object-contain" />
               <div
                 className="pointer-events-none absolute inset-0 blur-3xl opacity-20 -z-10"
                 style={{ background: "radial-gradient(500px 300px at 60% 40%, rgba(16,185,129,.35), transparent 60%)" }}
@@ -634,10 +634,10 @@ export default function App() {
             const ITEM_LOCAL = { hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0 } };
 
             return (
-              <div className="mt-8 space-y-8">
+              <div className="mt-6 md:mt-8 space-y-6 md:space-y-8">
                 {/* Company Pills */}
                 <motion.div
-                  className="flex justify-center flex-wrap gap-3 overflow-x-auto px-2"
+                  className="flex justify-center flex-wrap gap-2 md:gap-3 overflow-x-auto px-4 md:px-2"
                   variants={STAGGER_LOCAL}
                   initial="hidden"
                   animate="show"
@@ -671,7 +671,7 @@ export default function App() {
                   initial="hidden"
                   animate="show"
                 >
-                  <div className="p-6 md:p-8 flex flex-col gap-6">
+                  <div className="p-4 sm:p-6 md:p-8 flex flex-col gap-4 md:gap-6">
                     {/* Header row */}
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                       <h3 className="text-2xl md:text-3xl font-bold">{selected.company}</h3>
@@ -1104,9 +1104,9 @@ export default function App() {
             const ITEM_LOCAL = { hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0 } };
 
             return (
-              <div className="mt-8 space-y-8">
+              <div className="mt-6 md:mt-8 space-y-6 md:space-y-8">
                 {/* University pills */}
-                <motion.div className="flex justify-center flex-wrap gap-3" variants={STAGGER_LOCAL} initial="hidden" animate="show">
+                <motion.div className="flex justify-center flex-wrap gap-2 md:gap-3 px-4 md:px-0" variants={STAGGER_LOCAL} initial="hidden" animate="show">
                   {EDU.map((u) => (
                     <motion.button
                       key={u.key}
@@ -1135,7 +1135,7 @@ export default function App() {
                   initial="hidden"
                   animate="show"
                 >
-                  <div className="p-6 md:p-8 space-y-6">
+                  <div className="p-4 sm:p-6 md:p-8 space-y-4 md:space-y-6">
                     {/* Header */}
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                       <h3 className="text-2xl md:text-3xl font-bold">{selected.degree}</h3>
@@ -1277,8 +1277,8 @@ export default function App() {
         </Section>
 
         {/* ------------------------------ FOOTERS -------------------------- */}
-        <footer className="mt-50 border-t border-zinc-800/80 py-4">
-          <div className="max-w-6xl mx-auto px-6">
+        <footer className="mt-30 md:mt-50 border-t border-zinc-800/80 py-4 md:py-8">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className="text-center">
               <h3 className="text-3xl md:text-4xl font-extrabold text-white">Sayali Sawant</h3>
               <p className="mt-2 text-sm text-zinc-400 max-w-2xl mx-auto">
@@ -1337,16 +1337,16 @@ export default function App() {
         </footer>
 
         {/* Quick links footer */}
-        <footer className="border-t border-zinc-800 py-8">
-          <div className="max-w-6xl mx-auto px-6 text-sm text-zinc-400 flex items-center justify-between">
+        <footer className="border-t border-zinc-800 py-6 md:py-8">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 text-sm text-zinc-400 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
             <p />
-            <div className="flex gap-4">
-              <a href="#home" className="hover:text-white">Top</a>
-              <a href="#experience" className="hover:text-white">Professional Experience</a>
-              <a href="#education" className="hover:text-white">Academic Background</a>
-              <a href="#projects" className="hover:text-white">Projects</a>
-              <a href="#blog" className="hover:text-white">Blogs</a>
-              <a href="#contact" className="hover:text-white">Contact</a>
+            <div className="flex flex-wrap justify-center gap-2 md:gap-4">
+              <a href="#home" className="hover:text-white whitespace-nowrap">Top</a>
+              <a href="#experience" className="hover:text-white whitespace-nowrap">Professional Experience</a>
+              <a href="#education" className="hover:text-white whitespace-nowrap">Academic Background</a>
+              <a href="#projects" className="hover:text-white whitespace-nowrap">Projects</a>
+              <a href="#blog" className="hover:text-white whitespace-nowrap">Blogs</a>
+              <a href="#contact" className="hover:text-white whitespace-nowrap">Contact</a>
             </div>
           </div>
         </footer>
