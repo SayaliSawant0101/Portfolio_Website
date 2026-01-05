@@ -762,7 +762,7 @@ export default function App() {
                   " A full-stack RAG chatbot (FastAPI, FAISS + MiniLM) with OpenAI gpt-4o-mini replacing static resumes, delivering fast, context-aware answers to queries while showcasing end-to-end technical capability.",
                 tech: ["FastAPI", "FAISS", "all-MiniLM-L6-v2", "OpenAI gpt-4o-mini"],
                 readUrl:
-                  "https://github.com/SayaliSawant0101/Instacart-Customer-Intelligence/blob/main/README.md",
+                  "https://github.com/SayaliSawant0101/ResumeChatbot",
                 codeUrl: "https://resumechatbot.netlify.app/",
                 img: "8.jpg",
                 alt: "Resume chatbot thumbnail",
@@ -780,7 +780,8 @@ export default function App() {
                   "LLM Summary",
                   "Aspect/Theme Analysis",
                 ],
-                readUrl: "https://github.com/SayaliSawant0101/LLM-powered-social-listening-system",
+                readUrl: "https://github.com/SayaliSawant0101/Walmart-Social-Listening-System",
+                codeUrl: "https://socialmedialistener.netlify.app/",
                 img: "10.jpeg",
                 alt: "Social listening thumbnail",
               },
