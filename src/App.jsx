@@ -461,7 +461,7 @@ export default function App() {
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center gap-2 flex-wrap">
                     <a
-                      href="Resume_Sayali Sawant_AI.pdf"
+                      href="Resume_SayaliSawant.pdf"
                       download
                       className="inline-flex items-center gap-2 px-2 sm:px-3 py-2 rounded-md border border-zinc-800 text-zinc-200 text-xs sm:text-sm hover:border-sky-500 hover:text-white transition w-fit flex-none"
                     >
