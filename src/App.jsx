@@ -438,7 +438,7 @@ export default function App() {
                 viewport={{ once: true }}
                 className="text-2xl sm:text-3xl md:text-4xl font-light italic text-emerald-400 mt-2"
               >
-                <i>Master's in Data Science | AI/ML Enthusiast</i>
+                <i>Master's in Data Science | Data-Driven Insights for Product Growth and Business Impact</i>
               </motion.h6>
 
               <motion.p
@@ -448,11 +448,9 @@ export default function App() {
                 className="mt-6 md:mt-10 text-sm sm:text-base md:text-lg text-zinc-300 max-w-2xl leading-loose"
               >
                 <i>
-                  "In a world racing with technology, I see data as the compass that brings direction. I love building
-                  with it — whether it's insights, models, or curiosity-driven experiments. What excites me most is how
-                  rapidly technology is evolving, and I thrive on keeping pace, mastering new ways to create solutions
-                  that are more intelligent, faster, and truly useful. Over time, this journey has shaped my ability to
-                  decode human behavior by integrating data with technology — a craft I continue to refine every day."
+                  Data Analytics professional with 4+ years of experience across Growth, Product, and Marketing Analytics. 
+                  Combining technical depth with business acumen, I leverage statistical methods, A/B testing, and machine learning to 
+                  optimize funnels, validate hypotheses, and surface actionable insights that drive measurable business growth.
                 </i>
               </motion.p>
 
@@ -559,20 +557,21 @@ export default function App() {
                 period: "Dec 2021 – Jun 2024",
                 roles: [
                   {
-                    title: "Senior Analyst (Business Intelligence)",
+                    title: "Senior Analyst (Product Analytics)",
                     bullets: [
-                      "Built classification & clustering models to reveal adoption gaps; helped a retail client grow market share by 6%.",
-                      "Launched reusable analytics framework (SQL/Python/Tableau) for brand health reporting enabling consistant reporting across 7+ clients and reduceing turnaround by 40%.",
-                      "Served as SME for two clients; streamlined data collection, transformation, and reporting; optimized data models for decision-making.",
+                      "Analyzed end-to-end funnel and segment level data trends for a retail client identifying drop-off points and insights guiding the product team’s prioritization and experimentation roadmap resulting in increasing conversion rate by 15% and AOV by 6%.",
+                      "Owned end-to-end experiment design and statistical validation for A/B and multivariate tests, directly enabling Product and GTM teams to make data-backed decisions on growth initiative and feature launches.",
+                      "Built reusable SQL and Python pipelines for funnel, cohort, and churn analysis across 3 client accounts, segmenting by acquisition channel and RFM value, cutting analysis turnaround by 40% and optimizing customer acquisition/retention.",
+                      "Partnered with Product, Engineering, and Business teams to translate business KPIs into actionable and measurable success metrics by understanding the ecosystem and user pain points from acquisition to retention and revenue.",
                     ],
                     more: [
-                      "Deployed churn models and behavior-based customer segments to target at-risk users, cutting churn by 18% in 3 months.",
-                      "Performed trend analysis and forecasting (Prophet, SQL) integrating market-potential, share, and segment estimations to drive faster go-to-market insights.",
-                      "Led market deep-dive study with model-driven predictions to size opportunities and shape pricing, new lines, and partnerships—supporting clients’ go-to-market and market-penetration strategies",
+                      "Served as SME for two clients; streamlined data collection, transformation, and reporting; optimized data models for decision-making.",
+                      "Conducted customer behavioral analysis across segments and validated through survey-based sentiment insights to identify pain points and translating findings into targeted product and marketing strategies that contributed to a 5% YoY sales increase.",
+                      "Led market deep-dive study with model-driven predictions to size opportunities and shape pricing, new lines, and partnerships—supporting clients’ go-to-market and market-penetration strategies.",
                     ],
                   },
                   {
-                    title: "Analyst (Market Research)",
+                    title: "Analyst (Product Analytics and Market Research)",
                     bullets: [
                       "Built customer segmentation and conversion-probability models across performance-marketing data and omnichannel sales data, improving marketing ROI by 15%.",
                       "Automated data cleanup and performed statistical analysis across marketing, sales, and customer data to uncover performance drivers and validate insights for decision support",
@@ -770,7 +769,7 @@ export default function App() {
               {
                 title: "LLM-powered social listening system",
                 desc:
-                  "End-to-end pipeline on tweets using AWS S3 / Glue / Athena; delivers sentiment analysis (twitter-roberta-base-sentiment), Aspect based sentiment analysis (bart-large-mnli), theme based clusters via BERTopic (e5-base-v2) with GPT-4o-mini, and executive summaries - delivering interactive summary report for stakeholders",
+                  "A brand intelligence platform that monitors customer sentiment, surfaces emerging risks, and benchmarks competitors — giving retail stakeholders an always-on view of brand health and actionable signals to inform product and marketing decisions.",
                 tech: [
                   "ETL",
                   "OpenAI gpt-4o-mini",
