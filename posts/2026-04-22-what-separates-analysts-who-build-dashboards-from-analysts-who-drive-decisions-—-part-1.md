@@ -1,5 +1,5 @@
 ---
-title: THE 3 STEPS OF DATA ANALYSIS THAT DRIVES IMPACT — PART 1
+title: The 3 Steps of Data Analysis That Drives Impact — Part 1
 date: 2026-04-21T20:06:14.961Z
 tags: []
 image: /uploads/blog-3.png
