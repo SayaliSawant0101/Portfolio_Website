@@ -3,6 +3,7 @@ title: What separates analysts who build dashboards from analysts who drive
   decisions? — Part 1
 date: 2026-04-21T20:06:14.961Z
 tags: []
+image: /uploads/21aprilblog.png
 ---
 5 years ago I built my first dashboard. I pulled data, build dashboard, presented numbers.
 
