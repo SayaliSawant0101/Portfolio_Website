@@ -1,12 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 import App from "./App.jsx";
 import Blog from "./blogs.jsx";
-import Post from "./pages/Post.jsx";        // ✅ add this
-import ScrollToTop from "./ScrollToTop.jsx"; // (optional, if you have it)
+import Post from "./pages/Post.jsx";
+import ScrollToTop from "./ScrollToTop.jsx";
 import "./index.css";
+import ReactGA from "react-ga4";
+
+ReactGA.initialize("G-8WKQR1P14M");
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
