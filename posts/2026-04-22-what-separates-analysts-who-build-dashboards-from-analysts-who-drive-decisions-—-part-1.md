@@ -1,9 +1,8 @@
 ---
-title: What separates analysts who build dashboards from analysts who drive
-  decisions? — Part 1
+title: THE 3 STEPS OF DATA ANALYSIS THAT DRIVES IMPACT — PART 1
 date: 2026-04-21T20:06:14.961Z
 tags: []
-image: /uploads/21aprilblog.png
+image: /uploads/blog-3.png
 ---
 5 years ago I built my first dashboard. I pulled data, build dashboard, presented numbers.
 
