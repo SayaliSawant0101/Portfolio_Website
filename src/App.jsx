@@ -417,9 +417,9 @@ export default function App() {
 
         {/* ------------------------------ HERO ----------------------------- */}
         <section id="home" className="relative pt-12 md:pt-20 lg:pt-30 pb-16 md:pb-24 lg:pb-28">
-          <div className="w-full px-4 sm:px-6 md:px-12 lg:px-22 flex justify-end gap-6 md:gap-11 items-start">
-            {/* LEFT: TEXT */}
-            <div className="pl-0 md:pl-20 lg:pl-30">
+          <div className="w-full px-8 sm:px-16 md:px-24 lg:px-32 flex justify-between gap-0 md:gap-4 items-start">
+                {/* LEFT: TEXT */}
+            <div className="flex-1 pl-4 md:pl-12 lg:pl-12">
               <motion.h1
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
@@ -436,9 +436,9 @@ export default function App() {
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
                 viewport={{ once: true }}
-                className="text-2xl sm:text-3xl md:text-4xl font-light italic text-emerald-400 mt-2"
+                className="text-lg sm:text-3xl md:text-4xl font-light italic text-emerald-400 mt-2 whitespace-nowrap"
               >
-                <i>Master's in Data Science | Data-Driven Insights for Product Growth and Business Impact</i>
+                <i>MS in Data Science | Product & Growth Analytics</i>
               </motion.h6>
 
               <motion.p
@@ -448,10 +448,14 @@ export default function App() {
                 className="mt-6 md:mt-10 text-sm sm:text-base md:text-lg text-zinc-300 max-w-2xl leading-loose"
               >
                 <i>
-                  Data Analytics professional with 4+ years of experience across Growth, Product, and Marketing Analytics. 
-                  Combining technical depth with business acumen, I leverage statistical methods, A/B testing, and machine learning to 
-                  optimize funnels, validate hypotheses, and surface actionable insights that drive measurable business growth.
-                </i>
+                  Data Analytics professional with 4+ years of experience supporting Product and User Growth. Combining technical depth with business acumen, I leverage statistical methods, experimentation, and machine learning to build end-to-end analytics solutions, identify growth levers, validate hypotheses, and surface actionable strategies that drive measurable business impact
+                   </i>
+                <br /><br />
+                <i>
+                  Also exploring AI and LLM applications in Product and Data Analytics — see my work in the <a href="#projects" className="text-sky-400 hover:text-sky-300 underline decoration-dotted transition">Projects</a> section.
+                  </i>
+
+
               </motion.p>
 
               {/* CTA row */}
@@ -535,9 +539,10 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1, transition: { duration: 0.6 } }}
               viewport={{ once: true, amount: 0.2 }}
-              className="relative flex justify-center z-0"
+
+            className="relative flex justify-center z-0 flex-shrink-0 max-w-[600px] md:max-w-[700px] mt-6 md:mt-10 -translate-x-10 md:-translate-x-16"
             >
-              <img src="/me.png" alt="Sayali avatar" className="w-[300px] sm:w-[400px] md:w-[500px] max-w-full h-auto object-contain" />
+              <img src="/me.png" alt="Sayali avatar" className="w-[450px] sm:w-[550px] md:w-[780px] max-w-full h-auto object-contain" />
               <div
                 className="pointer-events-none absolute inset-0 blur-3xl opacity-20 -z-10"
                 style={{ background: "radial-gradient(500px 300px at 60% 40%, rgba(16,185,129,.35), transparent 60%)" }}
@@ -550,37 +555,57 @@ export default function App() {
         <Section id="experience" title="Professional Experience" subtitle="Stories of turning raw data into business wins — explore my journey below.">
           {(() => {
             const JOBS = [
+
+{
+  key: "filmy",
+  company: "Filmy AI",
+  city: "New York, USA",
+  period: "Jan 2025 – Present",
+  summary:"Conducting end-to-end product and growth analytics for a pre-launch two-sided platform connecting film industry talent with hiring professionals.",
+  roles: [
+    {
+      title: "Data Science & Analytics Intern",
+      bullets: [
+        "Designed activation funnel analysis framework to identify drop-off points and surface retention strategies ahead of platform launch",
+        "Translated broad growth goals into measurable KPIs and analytical frameworks in collaboration with product and business teams",
+        "Conducted market and competitor analysis to benchmark platform positioning and identify growth opportunities",
+        "Built an AI-intelligent workflow for competitive benchmarking automating data collection, summarization and gap analysis across 4+ platforms reducing manual efforts, improving accuracy and delivering structured insights supporting strategic decision-making",
+        "Supported data strategy and experimentation roadmap contributing to product decision-making before official launch",
+      ],
+      more: [],
+    },
+  ],
+},
+
+
+
               {
                 key: "agr",
                 company: "AGR Knowledge Services Pvt Ltd.",
                 city: "Mumbai, India",
                 period: "Dec 2021 – Jun 2024",
+                summary: "Led product, growth, and marketing analytics across e-commerce client accounts, owning end-to-end analysis, insight generation, opportunity sizing, prioritizing recommendations and A/B testing in close collaboration with product, engineering and marketing teams.",
                 roles: [
                   {
-                    title: "Senior Analyst (Product Analytics)",
+                    title: "Senior Data Analyst (Product Analytics)",
                     bullets: [
-                      "Analyzed end-to-end funnel and segment level data trends for a retail client identifying drop-off points and insights guiding the product team’s prioritization and experimentation roadmap resulting in increasing conversion rate by 15% and AOV by 6%.",
-                      "Owned end-to-end experiment design and statistical validation for A/B and multivariate tests, directly enabling Product and GTM teams to make data-backed decisions on growth initiative and feature launches.",
-                      "Built reusable SQL and Python pipelines for funnel, cohort, and churn analysis across 3 client accounts, segmenting by acquisition channel and RFM value, cutting analysis turnaround by 40% and optimizing customer acquisition/retention.",
-                      "Partnered with Product, Engineering, and Business teams to translate business KPIs into actionable and measurable success metrics by understanding the ecosystem and user pain points from acquisition to retention and revenue.",
+                      "Owned end-to-end funnel and segmentation analysis across acquisition, engagement, and retention — driving 15% CVR lift and 6% AOV increase",
+                      "Built LTV, CAC, and price elasticity models aligned across product, marketing, and finance — contributing to 5% lift in repeat purchases within 3 months",
+                      "Conducted behavioral and sentiment analysis across customer segments — informing targeted product and marketing strategies that drove 15% marketing ROI lift and 5% YoY sales growth",
+                      "Partnered with product and engineering on A/B and multivariate experiments — from hypothesis design through metric selection and interpretation",
+                      "Evaluated growth initiatives using sizing and prioritization frameworks — acting as analytical partner to influence product roadmap and experimentation strategy",
+                      "Led stakeholder sessions to define success metrics, guardrail metrics, and tradeoffs — translating findings into product roadmaps and quarterly planning"
                     ],
-                    more: [
-                      "Served as SME for two clients; streamlined data collection, transformation, and reporting; optimized data models for decision-making.",
-                      "Conducted customer behavioral analysis across segments and validated through survey-based sentiment insights to identify pain points and translating findings into targeted product and marketing strategies that contributed to a 5% YoY sales increase.",
-                      "Led market deep-dive study with model-driven predictions to size opportunities and shape pricing, new lines, and partnerships—supporting clients’ go-to-market and market-penetration strategies.",
-                    ],
+                 
                   },
                   {
-                    title: "Analyst (Product Analytics and Market Research)",
+                    title: "Data Analyst",
                     bullets: [
-                      "Built customer segmentation and conversion-probability models across performance-marketing data and omnichannel sales data, improving marketing ROI by 15%.",
-                      "Automated data cleanup and performed statistical analysis across marketing, sales, and customer data to uncover performance drivers and validate insights for decision support",
-                      "Led requirements gathering sessions with stakeholders; aligned KPIs and success metrics with business goals.",
+                    "Built reusable SQL and Python pipelines for funnel, cohort, and churn modeling — cutting analysis turnaround by 40%",
+                      "Designed and implemented data models and warehouse schemas integrating 5+ data sources — standardizing definitions and enabling consistent KPI tracking at scale",
+                      "Identified and resolved data quality issues including ETL failures and metric inconsistencies — implementing automated validation frameworks to ensure data integrity across all reporting outputs",
                     ],
-                    more: [
-                      "Automated a Net Promoter Score (NPS) analytics pipeline in Python, cutting manual effort 40% and accelerating insight turnaround.",
-                      "Developed a Tableau sales dashboard with product, pricing, regions, competitors and value-chain views—enhancing end-to-end visibility and guiding smarter planning",
-                    ],
+                  
                   },
                 ],
               },
@@ -606,18 +631,20 @@ export default function App() {
                 company: "Mumbai Railway Vikas Corporation Ltd. (MRVC)",
                 city: "Mumbai, India",
                 period: "Feb 2016 – Aug 2018",
+
                 roles: [
                   {
                     title: "Business Analyst",
                     bullets: [
-                      "Supported e-office software rollout; adopted by 300+ MRVC employees.",
-                      "Monitored the live app and handled tech support—triaged performance issues and resolved user tickets",
+                      "Built Tableau dashboards and Excel reports to communicate insights on ticket fare optimization, crowding predictions and passenger behavior to stakeholders",
+                      "Collaborated with product managers to gather requirements, define business scope and identify key data sources — translating findings into structured Business Requirement Documents (BRDs) and data flow diagrams",
+                      "Created documentation for data definitions, source-to-target mappings and transformations — ensuring accurate and consistent integration and maintaining traceability between business requirements and downstream analytical outputs",
+                      "Tracked deliverables, managed user stories and coordinated sprint activities using JIRA — ensuring alignment across product, engineering and business stakeholders throughout delivery cycles",
                       "Refined scope and JIRA stories; improved sprint efficiency and accelerating releases.",
+      
                     ],
                     more: [
-                      "Analyzed fares/crowding/behavior with Tableau/Excel across millions of rows and translated results into clear, executive-ready presentations and dashboards",
-                      "Applied digital-transformation fixes to hiring, employee-data, and filing workflows—streamlining manual processes and improving operational efficiency.",
-                    ],
+                       ],
                   },
                 ],
               },
@@ -686,6 +713,14 @@ export default function App() {
                       </div>
                     </div>
 
+{selected.summary && (
+  <>
+    <p className="text-sm text-zinc-400 italic text-center">
+      {selected.summary}
+    </p>
+    <div className="border-t border-zinc-800" />
+  </>
+)}
                     {/* Roles */}
                     <motion.div className="flex flex-col gap-6" variants={STAGGER_LOCAL} initial="hidden" animate="show">
                       {selected.roles.map((r) => {
