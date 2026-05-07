@@ -542,7 +542,7 @@ export default function App() {
 
             className="relative flex justify-center z-0 flex-shrink-0 max-w-[600px] md:max-w-[700px] mt-6 md:mt-10 -translate-x-10 md:-translate-x-16"
             >
-              <img src="/me.png" alt="Sayali avatar" className="w-[450px] sm:w-[550px] md:w-[780px] max-w-full h-auto object-contain" />
+              <img src="/me.png" alt="Sayali avatar" className="w-[280px] sm:w-[350px] md:w-[450px] max-w-full h-auto object-contain" />
               <div
                 className="pointer-events-none absolute inset-0 blur-3xl opacity-20 -z-10"
                 style={{ background: "radial-gradient(500px 300px at 60% 40%, rgba(16,185,129,.35), transparent 60%)" }}
