@@ -463,17 +463,6 @@ export default function App() {
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center gap-2 flex-wrap">
                     <a
-                      href="Resume_SayaliSawant.pdf"
-                      download
-                      className="inline-flex items-center gap-2 px-2 sm:px-3 py-2 rounded-md border border-zinc-800 text-zinc-200 text-xs sm:text-sm hover:border-sky-500 hover:text-white transition w-fit flex-none"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" />
-                      </svg>
-                      <span className="whitespace-nowrap">Download Resume</span>
-                    </a>
-
-                    <a
                       href="mailto:sayalis2024@gmail.com"
                       className="p-2 rounded-md border border-zinc-800 text-zinc-300 hover:border-sky-500 hover:text-white transition"
                       aria-label="Email"
